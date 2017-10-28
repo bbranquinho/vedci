@@ -1,92 +1,39 @@
-<html ng-app="vedci">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="bootstrap4/download.jpg">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>My Angular App!</title>
 
-    <title>Simulador Presença Residencial</title>
+    <!-- load uikit css -->
+    <link rel="stylesheet" href="node_modules/uikit/dist/css/uikit.min.css">
 
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap4/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/navbar-top-fixed.css" rel="stylesheet">
-    <link href="css/material-dashboard.css" rel="stylesheet">
-<!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' >
-  </head>
-
-  <body>
-
-    <!-- Wrapper -->
-    <div id="wrapper">
-
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#/">vedci</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#user">
-              <i class="material-icons">person_outline</i>
-              </a>
-            </li>
-          </ul>
-
-        </div>
-      </nav>
+    <!-- js -->
+    <!-- load polyfills and angular dependencies -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
 
 
-      <!-- Main -->
-      <div id="main">
-        <!-- Post -->
-        <article class="post">
-            <ng-view />
-        </article>
-      </div>
+    <!-- load our angular app with systemjs -->
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="systemjs.config.js"></script>
 
- </div>
+    <!-- load jquery -->
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
 
+   <!-- load uikit js -->
+    <script src="node_modules/uikit/dist/js/uikit.min.js"></script>
+    <script src="node_modules/uikit/dist/js/uikit-icons.min.js"></script>
 
+    <script>
+        System.import('js/main.js').catch(function(err) { console.error(err); });
+    </script>
+</head>
+<body class="container">
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="bootstrap4/assets/js/vendor/jquery.min.js"><\/script>')</script>
-    <script src="bootstrap4/assets/js/vendor/popper.min.js"></script>
-    <script src="bootstrap4/dist/js/bootstrap.min.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="bootstrap4/assets/js/ie10-viewport-bug-workaround.js"></script>
+    <main-app></main-app>
 
-    <!-- dependecias:js -->
-		<script src="js/angular.min.js"></script>
-		<script src="js/angular-route.min.js"></script>
-		<script src="js/angular-cookies.min.js"></script>
-		<script src="js/ngStorage.min.js"></script>
-		<script src="js/jquery.min.js"></script>
-		<script src="js/skel.min.js"></script>
-		<script src="js/util.js"></script>
-		<script src="js/ie/html5shiv.js"></script>
-		<script src="js/ie/respond.min.js"></script>
-		<script src="js/checklist-model.js"></script>
-		<script src="js/ng-notify.min.js"></script> <!--  -->
-
-    <!-- inject:js -->
-    <script src="src/index.js"></script>
-    <script src="src/home/home.js"></script>
-    <script src="src/login/login.js"></script>
-    <script src="src/login/login.logout.service.js"></script>
-    <script src="src/main/main.js"></script>
-    <script src="src/utils/interceptor.js"></script>
-	<script src="src/utils/util.filter.js"></script>
-    <script src="src/utils/util.service.js"></script>
-    <!-- endinject -->
-
-  </body>
+</body>
 </html>
