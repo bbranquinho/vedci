@@ -1,9 +1,12 @@
 language: java
 sudo: false
 jdk:
-  - oraclejdk8
+- oraclejdk8
 script:
-  - mvn test
-  - mvn cobertura:cobertura
+- mvn test
+- mvn cobertura:cobertura
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+- bash <(curl -s https://codecov.io/bash)
+notifications:
+  slack:
+    secure: MThkF/t9B/cxJ4PkUaPxnN+8WKSrAkwkaZrqFEuE2xScfZ0EPczN9Ms9M6fP7/doLENnR2q7KJ7dA+6SX54bge77iv5VX8k7Kaj8rgVbzkW6AFNBufDSOjfJD2SWxoLe6YJGKJYUHTycRnoGPOqNyYEqJc8rwkDP0hhD7eoKyY6KqyL7XopyC1zwa5x7rwjJrFRlUb0+N4Z2gVoNorrDJ62Sn9ycogvYha3U6KHzCESgESRpnE6+as9AVbd2EXX0xFCnJlx7dAOBuLBDM5Hs3q/XELvJPhI0Ym0Zye58Q8oXASN0XqKilZCK7Scv3LEfZ/PE0/Z0D1+L3L5C6B0uNfo9EReMb98JQobkx19DBJYFYzn3tfPslrIE3+WFjydGLzFDEiSbJ3VEn/aQVV6BMOJ8IvfjYKlIAd8Ni1OKjb4lAJ3nTmnQL6yeZm1iPkYnZxPmG0ju2Rj4UgGjICQGY1pQ1rn0QAh5mDIlnwp1806y+TWdGCb9uYeftXZ61p1/1bV3sOCjDEZpEWBR1xoI5/o/crlpnaVQrsuPZkMKJdUgdqo3poDR8pGitt44EzfVSJbPhU2/29MLXsGsrxnQpZOJsCHBOxGD3h30zENLXviDT8vhSEBsfC5rh8+TJHdtM8G3uU4oV4CL7Na6TRMXKswCZlOkbWGuIr+W1GIsoaQ=
