@@ -2,7 +2,7 @@ import { NgModule  } from '@angular/core';
 import {CommonModule} from "@angular/common";
 import { RouterModule } from "@angular/router";
 import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {TranslateLoaderFactory} from "../factory/translate-loader.factory";
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
@@ -15,6 +15,8 @@ import {MessageComponent} from "./user/message.component";
 import {MessagePipe} from "../pipe/message.pipe";
 import {SafeHtmlPipe} from "../pipe/safe-html.pipe";
 import {UserMenuComponent} from "./general/user-menu.component";
+import {HttpInterceptorService} from "../service/http-interceptor.service";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import {UserMenuComponent} from "./general/user-menu.component";
         FroalaEditorModule,
         FroalaViewModule,
         FooterModule,
+        FormsModule,
         RouterModule.forChild(UserRoutes),
         TranslateModule.forRoot({
             loader: {
@@ -31,12 +34,16 @@ import {UserMenuComponent} from "./general/user-menu.component";
                 useFactory: (http: HttpClient) => new TranslateLoaderFactory(http,
                     [
                         './translate/user/',
-                        './translate/general/footer/'
+                        './translate/general/footer/',
+                        './translate/general/notification/'
                     ], '.json'),
                 deps: [HttpClient]
             },
             isolate: true
         })
+    ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
     ],
     declarations: [
         UserTemplate,

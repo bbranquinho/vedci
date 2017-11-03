@@ -10,25 +10,49 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var user_model_1 = require("../../model/user.model");
+var auth_guard_service_1 = require("../../service/auth-guard.service");
+var router_1 = require("@angular/router");
+var welcome_highlight_model_1 = require("../../model/welcome-highlight.model");
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent() {
-        //Lista de destaques
-        this.highlight = [
-            { "id": 0, "name": "Nome 1", "url": "idlab1", "img": "https://pbs.twimg.com/profile_images/3572978953/8c522d3ea384cd42e46a4a2498300c35.jpeg" },
-            { "id": 1, "name": "Nome 1", "url": "idlab2", "img": "http://files2.ostagram.ru/uploads/style/image/430667/thumb_img_ad14b060bc.jpg" },
-            { "id": 2, "name": "Nome 3", "url": "idlab3", "img": "http://files2.ostagram.ru/uploads/style/image/346024/thumb_img_1712174707.jpg" },
-            { "id": 3, "name": "Nome 4", "url": "idlab4", "img": "https://www.theprintspace.co.uk/wp-content/uploads/2017/08/guide-header-img.png" },
-            { "id": 4, "name": "Nome 5", "url": "idlab5", "img": "http://www.goshootindoors.com/wp-content/uploads/img-07.jpg" }
-        ];
+    /**
+     * Construtor padrão
+     * @param {Router} router
+     * @param {ActivatedRoute} activatedRoute
+     */
+    function LoginComponent(router, activatedRoute) {
+        this.activatedRoute = activatedRoute;
+        this._router = router;
+        this._activatedRoute = activatedRoute;
     }
-    LoginComponent.prototype.getHighlight = function () {
-        return this.highlight;
+    /**
+     * Chamado no início da função
+     */
+    LoginComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._activatedRoute.params.subscribe(function (params) {
+            _this._returnUrl = params['url'] || '/user';
+        });
+        //Carrega a lista de destaque
+        welcome_highlight_model_1.WelcomeHighlightModel.getHighlights().subscribe(function (highlights) {
+            _this.highlights = welcome_highlight_model_1.WelcomeHighlightModel.fromJson(highlights);
+        });
+    };
+    /**
+     * Faz o login do usuário
+     */
+    LoginComponent.prototype.login = function () {
+        var _this = this;
+        var user = user_model_1.UserModel.login(this.email, this.password).subscribe(function (result) {
+            auth_guard_service_1.AuthGuardService.addToLocalStorage(user_model_1.UserModel.fromJson(result.user), result.token);
+            _this._router.navigateByUrl(_this._returnUrl);
+        });
     };
     LoginComponent = __decorate([
         core_1.Component({
             templateUrl: '../../../html/view/welcome/login.html'
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
     ], LoginComponent);
     return LoginComponent;
 }());

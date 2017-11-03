@@ -1,0 +1,59 @@
+{
+  "intercept": {
+  },
+  "body": [
+    {
+      "id": 100,
+      "message": "Se soubéssemos o que era aquilo que estávamos fazendo, não seria chamado de pesquisa.",
+      "private": false,
+      "to": {
+        "id": 1,
+        "firstName":  "Ana",
+        "lastName":  "Joaquina",
+        "image":  "../../../img/tmp/user-80/1.jpg"
+      },
+      "from": {
+        "id": 30,
+        "firstName":  "Paola",
+        "lastName":  "Fernandes",
+        "image":  "../../../img/tmp/user-80/2.jpg"
+      }
+    },
+    {
+      "id": 103,
+      "message": "Chuck Norris não segue tendências. As tendências seguem Chuck Norris. Aí então, as tendências acabam. Afinal, ninguém segue Chuck Norris impunemente.",
+      "private": false,
+      "to": {
+        "id": 1,
+        "firstName":  "Ana",
+        "lastName":  "Joaquina",
+        "image":  "../../../img/tmp/user-80/1.jpg"
+      },
+      "from": {
+        "id": 69,
+        "firstName":  "Erica",
+        "lastName":  "Matos Silva",
+        "image":  "../../../img/tmp/user-80/3.jpg"
+      }
+    },
+    {
+      "id": 236,
+      "message": "[b]Negrito[/b]<br>[i]Italico[/i]<br>[u]Sublinhado[/u]<br>[a http://google.com]Teste[/a] [a http://google.com.br]Teste2[/a][emoji]1f60c[/emoji]",
+      "private": true,
+      "to": {
+        "id": 1,
+        "firstName":  "Ana",
+        "lastName":  "Joaquina",
+        "image":  "../../../img/tmp/user-80/1.jpg"
+      },
+      "from": {
+        "id": 98,
+        "firstName":  "Luiza",
+        "lastName":  "Martins Silva",
+        "image":  "../../../img/tmp/user-80/4.jpg"
+      }
+    }
+  ]
+}
+
+

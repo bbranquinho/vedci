@@ -24,6 +24,8 @@ var message_component_1 = require("./user/message.component");
 var message_pipe_1 = require("../pipe/message.pipe");
 var safe_html_pipe_1 = require("../pipe/safe-html.pipe");
 var user_menu_component_1 = require("./general/user-menu.component");
+var http_interceptor_service_1 = require("../service/http-interceptor.service");
+var forms_1 = require("@angular/forms");
 var UserModule = /** @class */ (function () {
     function UserModule(translate) {
         // this language will be used as a fallback when a translation isn't found in the current language
@@ -39,18 +41,23 @@ var UserModule = /** @class */ (function () {
                 angular2_froala_wysiwyg_1.FroalaEditorModule,
                 angular2_froala_wysiwyg_1.FroalaViewModule,
                 footer_module_1.FooterModule,
+                forms_1.FormsModule,
                 router_1.RouterModule.forChild(user_routes_1.UserRoutes),
                 core_2.TranslateModule.forRoot({
                     loader: {
                         provide: core_2.TranslateLoader,
                         useFactory: function (http) { return new translate_loader_factory_1.TranslateLoaderFactory(http, [
                             './translate/user/',
-                            './translate/general/footer/'
+                            './translate/general/footer/',
+                            './translate/general/notification/'
                         ], '.json'); },
                         deps: [http_1.HttpClient]
                     },
                     isolate: true
                 })
+            ],
+            providers: [
+                { provide: http_1.HTTP_INTERCEPTORS, useClass: http_interceptor_service_1.HttpInterceptorService, multi: true }
             ],
             declarations: [
                 user_template_1.UserTemplate,

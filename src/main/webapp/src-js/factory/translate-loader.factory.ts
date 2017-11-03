@@ -1,7 +1,19 @@
 import {TranslateLoader} from "@ngx-translate/core";
 import {Observable} from "rxjs/Observable";
 import {HttpClient} from "@angular/common/http";
+import {HttpFactory} from "./http.factory";
 
+/**
+ * Classe criada para fabricar LOADERs para traduções.
+ * Esta classe pode receber como entrada vários arquivos JSON com traduções, ao final da carga dos arquivos
+ * é feito um MERGE nos dados obtidos.
+ *
+ * @author kamikaze <kamizaze@icefenix.com>
+ * @version 1.0.0.1
+ * @copyright EULA © 2017, IceFenix.com.
+ * @access public
+ * @package factory
+ */
 export class TranslateLoaderFactory implements TranslateLoader {
     http : HttpClient;
     prefix: Array<string>;
@@ -9,6 +21,13 @@ export class TranslateLoaderFactory implements TranslateLoader {
     requestNumber: number;
     countRequest: number;
 
+    /**
+     * Construtor padrão da Classe
+     *
+     * @param {HttpClient} http
+     * @param {Array<string>} prefix
+     * @param {string} suffix
+     */
     constructor(http: HttpClient, prefix: Array<string> = ["i18n"], suffix: string = ".json")
     {
         this.http = http;
@@ -17,9 +36,18 @@ export class TranslateLoaderFactory implements TranslateLoader {
         this.requestNumber = prefix.length;
     }
 
-    getObservableForHttp(value, combinedObject, lang: string) {
+    /**
+     * Faz download e MERGE dos arquivos JSON
+     *
+     * @param value
+     * @param combinedObject
+     * @param {string} lang
+     * @returns {any}
+     */
+    private getObservableForHttp(value, combinedObject, lang: string) {
         return Observable.create(observer => {
-            this.http.get(`${value}/${lang}${this.suffix}`)
+            HttpFactory.createHiddenHttp().get(`${value}/${lang}${this.suffix}`)
+                .map(response => response.json())
                 .subscribe((res) => {
                     //let responseObj = res.json();
                     let responseObj = res;
@@ -39,9 +67,14 @@ export class TranslateLoaderFactory implements TranslateLoader {
         });
     }
 
-
+    /**
+     * Inicia o download dos arquivos
+     *
+     * @param {string} lang
+     * @returns {Observable<any>}
+     */
     public getTranslation(lang: string): Observable<any> {
-        let combinedObject = new Object();
+        let combinedObject = {};
         let oldObsevers;
         let newObserver;
         this.countRequest = 0;

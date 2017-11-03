@@ -1,0 +1,14 @@
+{
+  "intercept": {
+    "status": "success",
+    "code": "200",
+    "message": "U0001",
+    "abort": false
+  },
+  "body": {
+    "id": 1,
+    "firstName": "Ana",
+    "lastName": "Joaquina",
+    "image": ".././../../img/tmp/user-250/1.jpg"
+  }
+}

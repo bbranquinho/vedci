@@ -11,9 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("node_modules/froala-editor/js/froala_editor.pkgd.min.js");
 var core_1 = require("@angular/core");
-var message_pipe_1 = require("../../pipe/message.pipe");
+var user_message_model_1 = require("../../model/user-message.model");
 var MessageComponent = /** @class */ (function () {
     function MessageComponent() {
+        var _this = this;
         this.froalaMainOptions = {
             charCounterCount: true,
             enter: $.FroalaEditor.ENTER_BR,
@@ -82,51 +83,33 @@ var MessageComponent = /** @class */ (function () {
                 { code: '1f637', desc: 'Face with medical mask' }
             ]
         };
-        this.messages = [
-            {
-                "id": "9999",
-                "author": "Maria Luka",
-                "message": "Se soubéssemos o que era aquilo que estávamos fazendo, não seria chamado de pesquisa.",
-                "image": "../../../img/tmp/user-80/1.jpg",
-                "to": "123332",
-                "from": "1023112"
-            },
-            {
-                "id": "992",
-                "author": "Erica Matos Silva",
-                "message": "Chuck Norris não segue tendências. As tendências seguem Chuck Norris. Aí então, as tendências acabam. Afinal, ninguém segue Chuck Norris impunemente.",
-                "image": "../../../img/tmp/user-80/2.jpg",
-                "to": "123332",
-                "from": "1056112"
-            },
-            {
-                "id": "991",
-                "author": "Charlie",
-                "message": "Olá tudo bem?",
-                "image": "../../../img/tmp/user-80/3.jpg",
-                "to": "123332",
-                "from": "105652"
-            },
-            {
-                "id": "991",
-                "author": "Charlie",
-                "message": "[b]Negrito[/b]<br>[i]Italico[/i]<br>[u]Sublinhado[/u]<br>[a http://google.com]Teste[/a] [a http://google.com.br]Teste2[/a][emoji]1f60c[/emoji]",
-                "image": "../../../img/tmp/user-80/4.jpg",
-                "to": "123332",
-                "from": "105652"
-            }
-        ];
-    }
-    MessageComponent.prototype.teste = function () {
-        this.messages.unshift({
-            "id": "991",
-            "author": "Mila de Milos",
-            "message": message_pipe_1.MessagePipe.encodeMessage(this.froalaMessage),
-            "image": "../../../img/tmp/user-250/1.jpg",
-            "to": "123332",
-            "from": "105652"
+        //Carrega as mensagens
+        user_message_model_1.UserMessageModel.getMessages(1, 0, 30).subscribe(function (messages) {
+            _this.messages = user_message_model_1.UserMessageModel.fromJson(messages);
         });
-        this.froalaMessage = "";
+    }
+    /**
+     * Posta uma mensagem
+     */
+    MessageComponent.prototype.postMessage = function () {
+        var _this = this;
+        var message = new user_message_model_1.UserMessageModel(null, this.froalaMessage, this.isPrivate, null, null);
+        //Salva a mensagem
+        message.save().subscribe(function (result) {
+            _this.messages.unshift(message);
+        });
+    };
+    /**
+     * Deleta messagem
+     *
+     * @param {UserMessageModel} message
+     * @param {number} index
+     */
+    MessageComponent.prototype.deleteMessage = function (message, index) {
+        var _this = this;
+        message.delete().subscribe(function (message) {
+            _this.messages.splice(index, 1);
+        });
     };
     MessageComponent = __decorate([
         core_1.Component({

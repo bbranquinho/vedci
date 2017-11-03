@@ -1,46 +1,43 @@
-<div class="uk-text-center uk-hidden@m">
-    <div class="ice-user-profile-img uk-overlay-hover uk-border-circle">
-        <figure class="ice-profile-overlay">
-            <img class="uk-border-circle" src=".././../../img/tmp/user-250/1.jpg" alt="">
-            <figcaption class="uk-overlay-panel uk-overlay-background uk-flex uk-flex-center uk-flex-middle uk-text-center uk-border-circle">
-                <div>
-                    <a href="#" uk-icon="icon: push" class="uk-icon-button"></a>
-                </div>
-            </figcaption>
-        </figure>
+<div class="ice-user-header-mobile">
+    <div class="uk-grid-small uk-flex-middle" uk-grid>
+        <div class="uk-width-auto">
+            <img src=".././../../img/tmp/user-250/1.jpg">
+        </div>
+        <div class="uk-width-expand">
+            <h3 class="uk-card-title uk-margin-remove-bottom">ISMAEL FAGUNDES DA SILVA</h3>
+            <p class="uk-text-meta uk-margin-remove-top">Sinta se avontade de compartilhar suas ideias comigo</p>
+        </div>
     </div>
-    <p class="uk-text-uppercase uk-margin-top-remove uk-text-muted">ISMAEL FAGUNDES DA SILVA</p>
 </div>
-
-
-
-
 
 
 <div [froalaEditor]="froalaMainOptions" [(froalaModel)]="froalaMessage"></div>
 
 <div class="uk-width-1-1 uk-margin-small-top">
-    <label><input class="uk-checkbox" type="checkbox"> {{'message-private' | translate}}</label>
+    <label><input class="uk-checkbox" [(ngModel)]="isPrivate" type="checkbox"> {{'message-private' | translate}}</label>
     <div class="uk-align-right">
-        <button (click)="teste()" class="uk-button uk-button-primary">{{'send' | translate}}</button>
+        <button (click)="postMessage()" class="uk-button uk-button-primary">{{'send' | translate}}</button>
     </div>
     <div class="uk-clearfix"></div>
 </div>
 
-<article class="uk-comment uk-margin-medium-bottom" *ngFor="let message of messages">
+<hr class="uk-divider-icon">
+
+
+<article class="uk-comment uk-margin-medium-bottom" *ngFor="let message of messages; let idx = index">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
         <div class="uk-width-auto">
-            <img class="uk-comment-avatar ice-user-message-img" [src]="message.image" width="80" height="80" alt="">
+            <img class="uk-comment-avatar ice-user-message-img" [src]="message.from.image" alt="">
         </div>
         <div class="uk-width-expand">
-            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.author}}</a></h4>
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.from.getFullName()}}</a></h4>
             <div class="uk-width-1-1">
                 <div class="uk-align-left ice-no-margin-bottom">
                     12 days ago
                 </div>
                 <div class="uk-align-right ice-no-margin-bottom">
                     <i class="fa fa-reply ice-i" aria-hidden="true"></i>
-                    <i class="fa fa-trash ice-i" aria-hidden="true"></i>
+                    <i class="fa fa-trash ice-i" (click)="deleteMessage(message, idx)" aria-hidden="true"></i>
                 </div>
                 <div class="uk-clearfix"></div>
             </div>

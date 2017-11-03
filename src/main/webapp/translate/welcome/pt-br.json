@@ -34,6 +34,7 @@
   "continue": "Continuar",
   "change-password": "Troque sua senha",
   "alter": "Alterar",
+  "back-home": "Voltar para o início",
 
   "registration-step": {
     "title-1" : "Etapa 1 - Acesse sua conta de e-mail.",
@@ -56,5 +57,11 @@
     "7": "Mude sua senha periodicamente;",
     "8": "Não use a opção de \"lembrar senha\" em computadores públicos;",
     "9": "Jamais compartilhe as suas senhas, mesmo com pessoas íntimas."
+  },
+
+  "logout":{
+    "title": "Obrigado por nos visitar",
+    "message-1": "Não se esqueça de nos visitar de novo!",
+    "message-2": "Um mundo de conhecimento ainda espera por você"
   }
 }

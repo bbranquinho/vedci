@@ -13,19 +13,15 @@
 </nav>
 
 
-
 <div class="ice-main">
-
     <div class="ice-container">
-
         <div class="uk-grid-small ice-welcome-container uk-grid-divider" uk-grid>
-
 
             <div class="ice-profile-menu uk-width-1-5@m">
 
                 <!-- Início do menu desktop -->
                 <div class="uk-visible@m">
-                    <user-menu></user-menu>
+                    <user-menu [userLogged]="user"></user-menu>
                 </div>
                 <!-- Fim do menu desktop -->
 
@@ -34,13 +30,12 @@
                     <div class="uk-offcanvas-bar">
 
                         <button class="uk-offcanvas-close" type="button" uk-close></button>
-                        <user-menu></user-menu>
+                        <user-menu [userLogged]="user"></user-menu>
 
                     </div>
                 </div>
                 <!-- Fim do menu Mobile -->
             </div>
-
 
             <div class="uk-width-4-5@m">
                 <router-outlet></router-outlet>

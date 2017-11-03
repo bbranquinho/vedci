@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import {ProfileComponent} from "./profile.component";
 import {UserTemplate} from "../template/user.template";
 import {MessageComponent} from "./message.component";
+import {AuthGuardService} from "../../service/auth-guard.service";
 
 
 export const UserRoutes: Routes = [
@@ -11,8 +12,8 @@ export const UserRoutes: Routes = [
 
     { path: '', component: UserTemplate,
         children:[
-                { path: '', component: ProfileComponent },
-                { path: 'message', component: MessageComponent }
+                { path: '', component: ProfileComponent, canActivate: [AuthGuardService] },
+                { path: 'message', component: MessageComponent, canActivate: [AuthGuardService] }
             ]
     }
 

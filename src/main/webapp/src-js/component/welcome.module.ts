@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
 import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 
 import {WelcomeTemplate} from "./template/welcome.template";
 import { WelcomeRoutes } from "./welcome/welcome.routes";
@@ -14,12 +14,16 @@ import {TranslateLoaderFactory} from "../factory/translate-loader.factory";
 import {RegisterConfirmationComponent} from "./welcome/register-confirmation.component";
 import {CommonModule} from "@angular/common";
 import {FooterModule} from "./footer.module";
+import {HttpInterceptorService} from "../service/http-interceptor.service";
+import {FormsModule} from "@angular/forms";
+import {LogoutComponent} from "./welcome/logout.component";
 
 @NgModule({
     imports: [
         CommonModule,
         HttpClientModule,
         FooterModule,
+        FormsModule,
         RouterModule.forChild(WelcomeRoutes),
         TranslateModule.forRoot({
             loader: {
@@ -27,19 +31,24 @@ import {FooterModule} from "./footer.module";
                 useFactory: (http: HttpClient) => new TranslateLoaderFactory(http,
                     [
                         './translate/welcome/',
-                        './translate/general/footer/'
+                        './translate/general/footer/',
+                        './translate/general/notification/'
                     ], '.json'),
                 deps: [HttpClient]
             },
             isolate: true
         })
     ],
+    providers: [
+        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
+    ],
     declarations: [
         WelcomeTemplate,
         LoginComponent,
         ForgotPasswordComponent,
         RegisterConfirmationComponent,
-        RegisterComponent
+        RegisterComponent,
+        LogoutComponent
     ],
 })
 

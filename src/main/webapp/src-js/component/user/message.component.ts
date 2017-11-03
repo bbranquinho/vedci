@@ -14,44 +14,18 @@ declare let $ :any;
     encapsulation: ViewEncapsulation.None,
 })
 export class MessageComponent{
-    messages: UserMessageModel[];
+    public messages: UserMessageModel[];
     public froalaMessage;
+    public isPrivate;
 
     constructor(){
-        this.messages = [
-            {
-                "id": "9999",
-                "author": "Maria Luka",
-                "message": "Se soubéssemos o que era aquilo que estávamos fazendo, não seria chamado de pesquisa.",
-                "image": "../../../img/tmp/user-80/1.jpg",
-                "to": "123332",
-                "from": "1023112"
-            },
-            {
-                "id": "992",
-                "author": "Erica Matos Silva",
-                "message": "Chuck Norris não segue tendências. As tendências seguem Chuck Norris. Aí então, as tendências acabam. Afinal, ninguém segue Chuck Norris impunemente.",
-                "image": "../../../img/tmp/user-80/2.jpg",
-                "to": "123332",
-                "from": "1056112"
-            },
-            {
-                "id": "991",
-                "author": "Charlie",
-                "message": "Olá tudo bem?",
-                "image": "../../../img/tmp/user-80/3.jpg",
-                "to": "123332",
-                "from": "105652"
-            },
-            {
-                "id": "991",
-                "author": "Charlie",
-                "message": "[b]Negrito[/b]<br>[i]Italico[/i]<br>[u]Sublinhado[/u]<br>[a http://google.com]Teste[/a] [a http://google.com.br]Teste2[/a][emoji]1f60c[/emoji]",
-                "image": "../../../img/tmp/user-80/4.jpg",
-                "to": "123332",
-                "from": "105652"
+        //Carrega as mensagens
+        UserMessageModel.getMessages(1,0,30).subscribe(
+            messages => {
+                this.messages = UserMessageModel.fromJson(messages);
             }
-        ];
+        );
+
     }
 
     public froalaMainOptions: Object = {
@@ -129,18 +103,37 @@ export class MessageComponent{
         ]
     };
 
+    /**
+     * Posta uma mensagem
+     */
+    public postMessage(){
+        let message =  new UserMessageModel(
+            null,
+            this.froalaMessage,
+            this.isPrivate,
+            null,
+            null
+        );
 
-    teste():void{
-        this.messages.unshift(
-            {
-                "id": "991",
-                "author": "Mila de Milos",
-                "message": MessagePipe.encodeMessage(this.froalaMessage),
-                "image": "../../../img/tmp/user-250/1.jpg",
-                "to": "123332",
-                "from": "105652"
+        //Salva a mensagem
+        message.save().subscribe(
+            result => {
+                this.messages.unshift(message);
             }
         );
-        this.froalaMessage = "";
+    }
+
+    /**
+     * Deleta messagem
+     *
+     * @param {UserMessageModel} message
+     * @param {number} index
+     */
+    public deleteMessage(message: UserMessageModel, index: number){
+        message.delete().subscribe(
+            message =>{
+                this.messages.splice(index, 1);
+            }
+        )
     }
 }

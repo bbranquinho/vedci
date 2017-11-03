@@ -1,0 +1,13 @@
+{
+  "notification": {
+    "success": {
+      "I0001": "Registro salvo com sucesso",
+      "I0002": "Registros salvos com sucesso",
+      "U0001": "Registro atualizado com sucesso",
+      "U0002": "Registros atualizados com sucesso",
+      "D0001": "Registro apagado com sucesso",
+      "D0002": "Registros apagados com sucesso"
+    }
+  }
+
+}

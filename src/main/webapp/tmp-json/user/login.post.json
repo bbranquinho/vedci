@@ -1,0 +1,13 @@
+{
+  "intercept": {
+  },
+  "body": {
+    "user":{
+      "id": 1,
+      "firstName": "Ana",
+      "lastName": "Joaquina",
+      "image": ".././../../img/tmp/user-250/1.jpg"
+    },
+    "token": "UXTXSADSASDS31212345f6s123d113D.54asd54.32S3d32ASd12"
+  }
+}

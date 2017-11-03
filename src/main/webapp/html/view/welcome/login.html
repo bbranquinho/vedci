@@ -6,19 +6,20 @@
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-login">{{'username' | translate}}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-login" type="text" placeholder="{{'username-placeholder' | translate}}">
+                        <input class="uk-input" id="form-login" name="email" type="text" placeholder="{{'username-placeholder' | translate}}">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-password">{{'password' | translate}}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-password" type="password" placeholder="{{'password-placeholder' | translate}}">
+                        <input class="uk-input" id="form-password" name="password" type="password" placeholder="{{'password-placeholder' | translate}}">
                     </div>
                 </div>
 
                 <div class="uk-margin">
-                   <a routerLink="/welcome/forgot-password">{{'forgot-password' | translate }}</a>
+                   <a class="uk-text-bottom" routerLink="/welcome/forgot-password">{{'forgot-password' | translate }}</a>
+                   <input type="button" value="{{'login' | translate}}" (click)="login()" class="uk-button uk-button-primary uk-align-right">
                 </div>
             </form>
         </div>
@@ -41,15 +42,13 @@
 
             <hr class="uk-divider-icon ice-highlights-margin">
 
-            <div class="ice-highlights-margin">
+            <div *ngIf="highlights" class="ice-highlights-margin">
                 {{'highlights' | translate}}
-
                 <div class="uk-grid-small ice-welcome-container" uk-grid>
-                    <div *ngFor="let image of getHighlight()" class="uk-width-1-5@s ice-highlights-img">
-                        <img [src]="image.img">
+                    <div *ngFor="let highlight of highlights" class="uk-width-1-5@s ice-highlights-img">
+                        <img [src]="highlight.image">
                     </div>
                 </div>
-
             </div>
 
         </div>
