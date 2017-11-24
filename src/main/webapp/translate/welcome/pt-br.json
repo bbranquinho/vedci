@@ -35,6 +35,11 @@
   "change-password": "Troque sua senha",
   "alter": "Alterar",
   "back-home": "Voltar para o início",
+  "password-do-not-match": "As senhas não coincidem",
+  "password-reset-success": "A senha foi alterada com sucesso",
+  "password-reset-error": "Não foi possível resetar a senha",
+  "account-confirm-success": "E-mail confirmado com sucesso",
+  "account-confirm-error": "Ocorreu um erro na confirmação",
 
   "registration-step": {
     "title-1" : "Etapa 1 - Acesse sua conta de e-mail.",

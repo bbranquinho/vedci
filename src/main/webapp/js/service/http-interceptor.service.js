@@ -13,6 +13,8 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/common/http");
 require("rxjs/add/operator/do");
 var auth_guard_service_1 = require("./auth-guard.service");
+var notification_service_1 = require("./notification.service");
+var core_2 = require("@ngx-translate/core");
 /**
  * Classe criada para inteceptar as conexões http.
  * Esta classe é responsável por compor corretamente as requisições http para a API, também faz um filtro nos erros
@@ -29,10 +31,12 @@ var HttpInterceptorService = /** @class */ (function () {
      * Construtor padrão da Classe
      *
      * @param {AuthGuardService} authService
+     * @param {TranslateService} translate
      */
-    function HttpInterceptorService(authService) {
+    function HttpInterceptorService(authService, translate) {
         this._baseUrl = '../../tmp-json/';
         this._authService = authService;
+        this._translate = translate;
     }
     /**
      * Intecepta as requisições http
@@ -62,6 +66,7 @@ var HttpInterceptorService = /** @class */ (function () {
                         response = response.clone({
                             body: {}
                         });
+                        return null;
                     }
                 }
             }
@@ -116,7 +121,7 @@ var HttpInterceptorService = /** @class */ (function () {
     HttpInterceptorService.prototype.showMessage = function (message) {
         if (message.message) {
             if (message.status = 'success') {
-                // NotificationService.success(this._translate.instant(`notification.success.${message.message}`));
+                notification_service_1.NotificationService.success(this._translate.instant("notification.success." + message.message));
             }
         }
         this._aborted = !!message.abort;
@@ -124,7 +129,7 @@ var HttpInterceptorService = /** @class */ (function () {
     };
     HttpInterceptorService = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [auth_guard_service_1.AuthGuardService])
+        __metadata("design:paramtypes", [auth_guard_service_1.AuthGuardService, core_2.TranslateService])
     ], HttpInterceptorService);
     return HttpInterceptorService;
 }());

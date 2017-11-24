@@ -3,12 +3,21 @@ import {Observable} from "rxjs/Observable";
 import {UserModel} from "./user.model";
 import {MessagePipe} from "../pipe/message.pipe";
 
+
 export class UserMessageModel {
     public id: number;
     public message: string;
     public to : UserModel;
     public from : UserModel;
     public isPrivate : boolean;
+    public date: Date;
+
+    //Variaveis de controle para resposta
+    public auxReply: string;
+    public auxReplayActive: boolean;
+    public auxIsPrivate: boolean;
+
+    private _timeAgoSeconds: number;
 
     /**
      * Construtor padrão da classe
@@ -18,49 +27,52 @@ export class UserMessageModel {
      * @param {boolean} isPrivate
      * @param {UserModel} to
      * @param {UserModel} from
+     * @param {Date} date
      */
-    constructor(id?:number, message?: string, isPrivate?: boolean, to?:UserModel, from?: UserModel) {
+    constructor(id:number, message: string, isPrivate: boolean, to:UserModel, from: UserModel, date: Date) {
         this.id = id;
         this.message = UserMessageModel.getCleanMessage(message);
         this.to = to;
         this.from = from;
         this.isPrivate = isPrivate;
+        this.date = date;
     }
 
     /**
      * Busca Mensagens
+     *
      * @param {number} user
      * @param {number} start
      * @param {number} limit
-     * @returns {Observable<any>}
+     * @returns {Observable<UserMessageModel[]>}
      */
-    public static getMessages(user: number, start: number, limit: number): Observable<any>{
+    public static getMessages(user: number, start: number, limit: number): Observable<UserMessageModel[]>{
         return HttpFactory.createHttp().get(
             `user/message?${user}/${start}/${limit}`
-        );
+        ).map(result =>{
+            return UserMessageModel.fromJson(result);
+        });
     }
 
     /**
-     * Insere uma nova mensagem
+     * Faz uma uma postagem de uma nova mensagem
      *
-     * @returns {Observable<any>}
+     * @param {UserModel} to
+     * @param {string} message
+     * @param {boolean} isPrivate
+     * @returns {Observable<UserMessageModel>}
      */
-    public save(): Observable<any>{
+    public static post(to: UserModel, message: string, isPrivate: boolean): Observable<UserMessageModel>{
         return HttpFactory.createHttp().post(
             `user/message`,
             {
-                "id": this.id,
-                "from": this.from.id,
-                "to": this.to.id,
-                "message": UserMessageModel.getCleanMessage(this.message),
-                "private": this.isPrivate
+                "to": to.id,
+                "message": UserMessageModel.getCleanMessage(message),
+                "private": isPrivate
             }
-        ).map(
-            result => {
-                this.id = result['id'];
-                this.message = result['message']
-            }
-        );
+        ).map( result => {
+            return UserMessageModel.fromJson(result);
+        });
     }
 
     /**
@@ -72,6 +84,19 @@ export class UserMessageModel {
         return HttpFactory.createHttp().delete(
             `user/message?${this.id}`
         );
+    }
+
+    /**
+     * Retorna a diferença entre a data que foi postada e data atual, em segundos
+     *
+     * @returns {number}
+     */
+    public getSecondsAgo(): number{
+        if(!this._timeAgoSeconds){
+            let now = new Date();
+            this._timeAgoSeconds = parseInt(((now.getTime() - this.date.getTime())/ 1000).toString(), 10);
+        }
+        return this._timeAgoSeconds;
     }
 
     /**
@@ -101,7 +126,8 @@ export class UserMessageModel {
                 json.message,
                 json.private,
                 new UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image),
-                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image)
+                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image),
+                new Date(json.date)
             ));
         }else{
             return new UserMessageModel(
@@ -109,7 +135,8 @@ export class UserMessageModel {
                 json.message,
                 json.private,
                 new UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image),
-                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image)
+                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image),
+                new Date(json.date)
             );
         }
     }

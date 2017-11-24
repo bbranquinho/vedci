@@ -18,6 +18,9 @@ var main_template_1 = require("./template/main.template");
 var auth_guard_service_1 = require("../service/auth-guard.service");
 var http_interceptor_service_1 = require("../service/http-interceptor.service");
 var http_factory_1 = require("../factory/http.factory");
+var core_2 = require("@ngx-translate/core");
+var translate_loader_factory_1 = require("../factory/translate-loader.factory");
+var language_module_1 = require("./language.module");
 var MainModule = /** @class */ (function () {
     function MainModule(http) {
         this.http = http;
@@ -29,7 +32,17 @@ var MainModule = /** @class */ (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 http_1.HttpClientModule,
-                router_1.RouterModule.forRoot(main_routes_1.MainRoutes, { useHash: false })
+                language_module_1.LanguageModule,
+                router_1.RouterModule.forRoot(main_routes_1.MainRoutes, { useHash: false }),
+                core_2.TranslateModule.forChild({
+                    loader: {
+                        provide: core_2.TranslateLoader,
+                        useFactory: function () { return new translate_loader_factory_1.TranslateLoaderFactory([
+                            './translate/general/notification/'
+                        ], '.json'); }
+                    },
+                    isolate: true
+                })
             ],
             declarations: [
                 main_template_1.MainTemplate

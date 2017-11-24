@@ -3,6 +3,7 @@ import {UserModel} from "../../model/user.model";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {NotificationService} from "../../service/notification.service";
 import {TranslateService} from "@ngx-translate/core";
+import {AuthGuardService} from "../../service/auth-guard.service";
 
 @Component({
     templateUrl: '../../../html/view/welcome/forgot-password.html'
@@ -10,7 +11,6 @@ import {TranslateService} from "@ngx-translate/core";
 export class ForgotPasswordComponent implements OnInit{
     private _router: Router;
     private _activatedRoute: ActivatedRoute;
-    private _user: UserModel;
     private _translate: TranslateService;
 
     public email: string;
@@ -24,11 +24,11 @@ export class ForgotPasswordComponent implements OnInit{
      *
      * @param {Router} router
      * @param {ActivatedRoute} activatedRoute
+     * @param {TranslateService} translate
      */
     constructor(router: Router, activatedRoute: ActivatedRoute, translate: TranslateService){
         this._router = router;
         this._activatedRoute = activatedRoute;
-        this._user = new UserModel();
         this._translate = translate;
     }
 
@@ -51,20 +51,34 @@ export class ForgotPasswordComponent implements OnInit{
      * Solicita o token
      */
     public requestToken(): void{
-        //Atualiza o e-mail
-        this._user.email = this.email;
-
         //Solicita o token
-        this._user.requestTokenPassword().subscribe(response => {
-            this.forgotPasswordPage = false;
+        UserModel.requestTokenPassword(this.email).subscribe(result => {
+            if(result.status){
+                NotificationService.success(this._translate.instant("password-reset-success"));
+                this.forgotPasswordPage = false;
+            }else{
+                NotificationService.danger(this._translate.instant("password-reset-error"));
+            }
         })
     }
 
+    /**
+     * Altera a senha
+     */
     public changePassword(): void{
+        if(this.password != this.passwordConfirm){
+            NotificationService.danger(this._translate.instant("password-do-not-match"));
+            return;
+        }
 
-        this._user.changePassword('').subscribe(result =>{
-
+        //Atualiza a senha
+        UserModel.resetPassword(this.password, this.token).subscribe(result =>{
+            if(result.status){
+                NotificationService.success(this._translate.instant("password-reset-success"));
+                this._router.navigateByUrl('/welcome/login');
+            }else{
+                NotificationService.danger(this._translate.instant("password-reset-error"));
+            }
         });
-
     }
 }

@@ -15,7 +15,9 @@ var WelcomeHighlightModel = /** @class */ (function () {
      * @returns {Observable<any>}
      */
     WelcomeHighlightModel.getHighlights = function () {
-        return http_factory_1.HttpFactory.createHttp().get('welcome/highlight');
+        return http_factory_1.HttpFactory.createHttp().get('welcome/highlight').map(function (result) {
+            return WelcomeHighlightModel.fromJson(result);
+        });
     };
     /**
      * Retonra os campos em JSON

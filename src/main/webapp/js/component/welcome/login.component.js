@@ -35,7 +35,7 @@ var LoginComponent = /** @class */ (function () {
         });
         //Carrega a lista de destaque
         welcome_highlight_model_1.WelcomeHighlightModel.getHighlights().subscribe(function (highlights) {
-            _this.highlights = welcome_highlight_model_1.WelcomeHighlightModel.fromJson(highlights);
+            _this.highlights = highlights;
         });
     };
     /**

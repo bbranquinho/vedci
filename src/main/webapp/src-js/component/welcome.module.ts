@@ -1,47 +1,41 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from "@angular/router";
-import { TranslateModule, TranslateLoader, TranslateService } from '@ngx-translate/core';
-import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import {WelcomeTemplate} from "./template/welcome.template";
 import { WelcomeRoutes } from "./welcome/welcome.routes";
-
 
 import{ LoginComponent } from "./welcome/login.component";
 import {RegisterComponent} from "./welcome/register.component";
 import {ForgotPasswordComponent} from "./welcome/forgot-password.component";
 import {TranslateLoaderFactory} from "../factory/translate-loader.factory";
 import {RegisterConfirmationComponent} from "./welcome/register-confirmation.component";
-import {CommonModule} from "@angular/common";
 import {FooterModule} from "./footer.module";
-import {HttpInterceptorService} from "../service/http-interceptor.service";
 import {FormsModule} from "@angular/forms";
 import {LogoutComponent} from "./welcome/logout.component";
+import {LanguageModule} from "./language.module";
 
 @NgModule({
     imports: [
-        CommonModule,
         HttpClientModule,
         FooterModule,
         FormsModule,
+        LanguageModule,
         RouterModule.forChild(WelcomeRoutes),
-        TranslateModule.forRoot({
+        TranslateModule.forChild({
             loader: {
                 provide: TranslateLoader,
-                useFactory: (http: HttpClient) => new TranslateLoaderFactory(http,
+                useFactory:() => new TranslateLoaderFactory(
                     [
                         './translate/welcome/',
-                        './translate/general/footer/',
-                        './translate/general/notification/'
-                    ], '.json'),
-                deps: [HttpClient]
+                        './translate/general/footer/'
+                    ], '.json')
             },
             isolate: true
         })
     ],
-    providers: [
-        { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
-    ],
+
     declarations: [
         WelcomeTemplate,
         LoginComponent,
@@ -53,14 +47,6 @@ import {LogoutComponent} from "./welcome/logout.component";
 })
 
 
-
-
 export class WelcomeModule {
-    constructor(translate: TranslateService) {
-        // this language will be used as a fallback when a translation isn't found in the current language
-        translate.setDefaultLang('pt-br');
 
-        // the lang to use, if the lang isn't available, it will use the current loader to get them
-        translate.use('pt-br');
-    }
 }

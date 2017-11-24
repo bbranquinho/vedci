@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit{
 
         //Carrega a lista de destaque
         WelcomeHighlightModel.getHighlights().subscribe(highlights =>{
-            this.highlights = <WelcomeHighlightModel[]> WelcomeHighlightModel.fromJson(highlights);
+            this.highlights = highlights;
         });
     }
 

@@ -21,6 +21,7 @@ export const WelcomeRoutes: Routes = [
             { path: 'forgot-password', component: ForgotPasswordComponent },
             { path: 'forgot-password/:token', component: ForgotPasswordComponent },
             { path: 'register-confirmation', component: RegisterConfirmationComponent },
+            { path: 'register-confirmation/:token', component: RegisterConfirmationComponent },
             { path: 'logout', component: LogoutComponent }
         ]
     }

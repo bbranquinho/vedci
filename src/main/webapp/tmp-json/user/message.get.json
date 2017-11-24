@@ -6,6 +6,7 @@
       "id": 100,
       "message": "Se soubéssemos o que era aquilo que estávamos fazendo, não seria chamado de pesquisa.",
       "private": false,
+      "date": "2017-11-19 00:00:00+12:00",
       "to": {
         "id": 1,
         "firstName":  "Ana",
@@ -23,6 +24,7 @@
       "id": 103,
       "message": "Chuck Norris não segue tendências. As tendências seguem Chuck Norris. Aí então, as tendências acabam. Afinal, ninguém segue Chuck Norris impunemente.",
       "private": false,
+      "date": "2017-11-12 00:00:00+12:00",
       "to": {
         "id": 1,
         "firstName":  "Ana",
@@ -40,6 +42,7 @@
       "id": 236,
       "message": "[b]Negrito[/b]<br>[i]Italico[/i]<br>[u]Sublinhado[/u]<br>[a http://google.com]Teste[/a] [a http://google.com.br]Teste2[/a][emoji]1f60c[/emoji]",
       "private": true,
+      "date": "2017-11-08 00:00:00+12:00",
       "to": {
         "id": 1,
         "firstName":  "Ana",

@@ -32,6 +32,10 @@ var HttpFactory = /** @class */ (function () {
         //inicia o injetor que pode ser interceptado
         HttpFactory_1._injectorHttp = http;
         //Inicia o injetor que não pode ser interceptado
+        HttpFactory_1.startHiddenHttp();
+    }
+    HttpFactory_1 = HttpFactory;
+    HttpFactory.startHiddenHttp = function () {
         HttpFactory_1._injectorHiddenHttp = core_1.ReflectiveInjector.resolveAndCreate([
             http_1.Http,
             http_1.BrowserXhr,
@@ -40,8 +44,7 @@ var HttpFactory = /** @class */ (function () {
             { provide: http_1.ConnectionBackend, useClass: http_1.XHRBackend },
             { provide: http_1.XSRFStrategy, useFactory: function () { return new http_1.CookieXSRFStrategy(); } }
         ]).get(http_1.Http);
-    }
-    HttpFactory_1 = HttpFactory;
+    };
     /**
      * Cria uma conexão Http que pode ser interceptada
      *
@@ -56,6 +59,9 @@ var HttpFactory = /** @class */ (function () {
      * @returns {Http}
      */
     HttpFactory.createHiddenHttp = function () {
+        if (!HttpFactory_1._injectorHiddenHttp) {
+            HttpFactory_1.startHiddenHttp();
+        }
         return HttpFactory_1._injectorHiddenHttp;
     };
     HttpFactory = HttpFactory_1 = __decorate([

@@ -17,17 +17,15 @@ var TranslateLoaderFactory = /** @class */ (function () {
     /**
      * Construtor padrão da Classe
      *
-     * @param {HttpClient} http
      * @param {Array<string>} prefix
      * @param {string} suffix
      */
-    function TranslateLoaderFactory(http, prefix, suffix) {
+    function TranslateLoaderFactory(prefix, suffix) {
         if (prefix === void 0) { prefix = ["i18n"]; }
         if (suffix === void 0) { suffix = ".json"; }
-        this.http = http;
-        this.prefix = prefix;
-        this.suffix = suffix;
-        this.requestNumber = prefix.length;
+        this._prefix = prefix;
+        this._suffix = suffix;
+        this._requestNumber = prefix.length;
     }
     /**
      * Faz download e MERGE dos arquivos JSON
@@ -40,7 +38,10 @@ var TranslateLoaderFactory = /** @class */ (function () {
     TranslateLoaderFactory.prototype.getObservableForHttp = function (value, combinedObject, lang) {
         var _this = this;
         return Observable_1.Observable.create(function (observer) {
-            http_factory_1.HttpFactory.createHiddenHttp().get(value + "/" + lang + _this.suffix)
+            if (value.endsWith('/')) {
+                value = value.substr(0, value.length - 1);
+            }
+            http_factory_1.HttpFactory.createHiddenHttp().get(value + "/" + lang + _this._suffix)
                 .map(function (response) { return response.json(); })
                 .subscribe(function (res) {
                 //let responseObj = res.json();
@@ -49,8 +50,8 @@ var TranslateLoaderFactory = /** @class */ (function () {
                     combinedObject[key] = responseObj[key];
                 });
                 //Atualiza as traduções só quando estiver os arquivos
-                _this.countRequest++;
-                if (_this.countRequest == _this.requestNumber) {
+                _this._countRequest++;
+                if (_this._countRequest == _this._requestNumber) {
                     observer.next(combinedObject);
                 }
                 //call complete if you want to close this stream (like a promise)
@@ -67,10 +68,10 @@ var TranslateLoaderFactory = /** @class */ (function () {
     TranslateLoaderFactory.prototype.getTranslation = function (lang) {
         var _this = this;
         var combinedObject = {};
-        var oldObsevers;
+        var oldObsevers = null;
         var newObserver;
-        this.countRequest = 0;
-        this.prefix.forEach(function (value) {
+        this._countRequest = 0;
+        this._prefix.forEach(function (value) {
             newObserver = _this.getObservableForHttp(value, combinedObject, lang);
             if (oldObsevers == null) {
                 oldObsevers = newObserver;

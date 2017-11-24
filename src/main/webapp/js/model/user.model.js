@@ -24,42 +24,41 @@ var UserModel = /** @class */ (function () {
      * @returns {Observable<any>}
      */
     UserModel.getUser = function (id) {
-        return http_factory_1.HttpFactory.createHttp().get('user/profile');
+        return http_factory_1.HttpFactory.createHttp().get("user/profile?" + id).map(function (result) {
+            return UserModel.fromJson(result);
+        });
     };
     /**
      * Solicia o token para reset da senha
      *
      * @returns {Observable<any>}
      */
-    UserModel.prototype.requestTokenPassword = function () {
+    UserModel.requestTokenPassword = function (email) {
         return http_factory_1.HttpFactory.createHttp().post('user/reset', {
-            "email": this.email
+            "email": email
         });
     };
     /**
-     * Seta o token
+     * confirma a conta
      *
-     * @param {string} token
+     * @returns {Observable<any>}
      */
-    UserModel.prototype.setTokenPassword = function (token) {
-        this._tokenPassword = token;
+    UserModel.confirmAccount = function (token) {
+        return http_factory_1.HttpFactory.createHttp().post('user/confirm', {
+            "token": token
+        });
     };
     /**
      * Realiza o reset da senha
      *
      * @param {string} password
+     * @param {string} token
      * @returns {Observable<any>}
      */
-    UserModel.prototype.changePassword = function (password) {
-        var _this = this;
+    UserModel.resetPassword = function (password, token) {
         return http_factory_1.HttpFactory.createHttp().put('user/reset', {
             "password": password,
-            "token": this._tokenPassword
-        }).map(function (response) {
-            _this.id = response['id'];
-            _this.firstName = response['firstName'];
-            _this.lastName = response['lastName'];
-            _this.image = response['image'];
+            "token": token
         });
     };
     /**

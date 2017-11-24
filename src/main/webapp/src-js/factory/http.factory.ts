@@ -31,6 +31,11 @@ export class HttpFactory {
         HttpFactory._injectorHttp = http;
 
         //Inicia o injetor que não pode ser interceptado
+        HttpFactory.startHiddenHttp();
+    }
+
+
+    private static startHiddenHttp(){
         HttpFactory._injectorHiddenHttp = ReflectiveInjector.resolveAndCreate([
             Http,
             BrowserXhr,
@@ -56,6 +61,9 @@ export class HttpFactory {
      * @returns {Http}
      */
     public static createHiddenHttp(): Http {
+        if(!HttpFactory._injectorHiddenHttp){
+            HttpFactory.startHiddenHttp();
+        }
         return HttpFactory._injectorHiddenHttp;
     }
 }

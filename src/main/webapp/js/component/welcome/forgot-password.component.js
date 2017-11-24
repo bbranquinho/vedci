@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var user_model_1 = require("../../model/user.model");
 var router_1 = require("@angular/router");
+var notification_service_1 = require("../../service/notification.service");
 var core_2 = require("@ngx-translate/core");
 var ForgotPasswordComponent = /** @class */ (function () {
     /**
@@ -19,12 +20,12 @@ var ForgotPasswordComponent = /** @class */ (function () {
      *
      * @param {Router} router
      * @param {ActivatedRoute} activatedRoute
+     * @param {TranslateService} translate
      */
     function ForgotPasswordComponent(router, activatedRoute, translate) {
         this.forgotPasswordPage = true;
         this._router = router;
         this._activatedRoute = activatedRoute;
-        this._user = new user_model_1.UserModel();
         this._translate = translate;
     }
     /**
@@ -46,15 +47,35 @@ var ForgotPasswordComponent = /** @class */ (function () {
      */
     ForgotPasswordComponent.prototype.requestToken = function () {
         var _this = this;
-        //Atualiza o e-mail
-        this._user.email = this.email;
         //Solicita o token
-        this._user.requestTokenPassword().subscribe(function (response) {
-            _this.forgotPasswordPage = false;
+        user_model_1.UserModel.requestTokenPassword(this.email).subscribe(function (result) {
+            if (result.status) {
+                notification_service_1.NotificationService.success(_this._translate.instant("password-reset-success"));
+                _this.forgotPasswordPage = false;
+            }
+            else {
+                notification_service_1.NotificationService.danger(_this._translate.instant("password-reset-error"));
+            }
         });
     };
+    /**
+     * Altera a senha
+     */
     ForgotPasswordComponent.prototype.changePassword = function () {
-        this._user.changePassword('').subscribe(function (result) {
+        var _this = this;
+        if (this.password != this.passwordConfirm) {
+            notification_service_1.NotificationService.danger(this._translate.instant("password-do-not-match"));
+            return;
+        }
+        //Atualiza a senha
+        user_model_1.UserModel.resetPassword(this.password, this.token).subscribe(function (result) {
+            if (result.status) {
+                notification_service_1.NotificationService.success(_this._translate.instant("password-reset-success"));
+                _this._router.navigateByUrl('/welcome/login');
+            }
+            else {
+                notification_service_1.NotificationService.danger(_this._translate.instant("password-reset-error"));
+            }
         });
     };
     ForgotPasswordComponent = __decorate([

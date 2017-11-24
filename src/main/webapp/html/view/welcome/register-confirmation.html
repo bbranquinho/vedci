@@ -20,12 +20,12 @@
             <div class="uk-margin">
                 <label class="uk-form-label" for="form-confirm">{{'confirm-key' | translate}}</label>
                 <div class="uk-form-controls">
-                    <input class="uk-input" id="form-confirm" type="text" placeholder="{{'confirm-placeholder' | translate}}">
+                    <input class="uk-input" [(ngModel)]="token" name="token" id="form-confirm" type="text" placeholder="{{'confirm-placeholder' | translate}}">
                 </div>
             </div>
 
             <div class="uk-align-right">
-                <button class="uk-button uk-button-primary">{{'confirm' | translate}}</button>
+                <button (click)="confirmAccount()"  class="uk-button uk-button-primary">{{'confirm' | translate}}</button>
             </div>
             <div class="uk-clearfix"></div>
         </div>

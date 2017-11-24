@@ -1,13 +1,17 @@
 {
   "notification": {
     "success": {
-      "I0001": "Registro salvo com sucesso",
-      "I0002": "Registros salvos com sucesso",
-      "U0001": "Registro atualizado com sucesso",
-      "U0002": "Registros atualizados com sucesso",
-      "D0001": "Registro apagado com sucesso",
-      "D0002": "Registros apagados com sucesso"
+      "IN-001": "Dados salvos com sucesso",
+      "UP-001": "Dados atualizados com sucesso",
+      "DEL-001": "Dados apagados com sucesso",
+      "PWDRST-001": "Senha Alterada com sucesso"
+    },
+    "error":{
+      "IN-001": "Ocorreu um erro ao salvar os dados",
+      "UP-001": "Ocorreu um erro ao atualizar os dados",
+      "DEL-001": "Ocorreu um erro ao apagar os dados",
+      "PWDRST-001": "A senha não atende os requisitos de segurança",
+      "AUTH-001": "Você não está autenticado"
     }
   }
-
 }

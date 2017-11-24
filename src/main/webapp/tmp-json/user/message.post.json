@@ -1,8 +1,22 @@
 {
   "intercept": {
-
   },
   "body": {
-    "id": 9999
+    "id": 100,
+    "message": "Se soubéssemos o que era aquilo que estávamos fazendo, não seria chamado de pesquisa.",
+    "private": false,
+    "date": "2017-11-19 18:00:00+00:00",
+    "to": {
+      "id": 1,
+      "firstName":  "Ana",
+      "lastName":  "Joaquina",
+      "image":  "../../../img/tmp/user-80/1.jpg"
+    },
+    "from": {
+      "id": 30,
+      "firstName":  "Paola",
+      "lastName":  "Fernandes",
+      "image":  "../../../img/tmp/user-80/2.jpg"
+    }
   }
 }

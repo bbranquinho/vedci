@@ -8,12 +8,27 @@ import {MainTemplate} from "./template/main.template";
 import {AuthGuardService} from "../service/auth-guard.service";
 import {HttpInterceptorService} from "../service/http-interceptor.service";
 import {HttpFactory} from "../factory/http.factory";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateLoaderFactory} from "../factory/translate-loader.factory";
+import {LanguageModule} from "./language.module";
+
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpClientModule,
-        RouterModule.forRoot(MainRoutes, {useHash: false})
+        LanguageModule,
+        RouterModule.forRoot(MainRoutes, {useHash: false}),
+        TranslateModule.forChild({
+            loader: {
+                provide: TranslateLoader,
+                useFactory:() => new TranslateLoaderFactory(
+                    [
+                        './translate/general/notification/'
+                    ], '.json')
+            },
+            isolate: true
+        })
     ],
     declarations: [
         MainTemplate

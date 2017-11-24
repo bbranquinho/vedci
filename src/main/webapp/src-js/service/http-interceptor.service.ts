@@ -22,14 +22,17 @@ export class HttpInterceptorService implements HttpInterceptor {
     private _authService : AuthGuardService;
     private _baseUrl: string = '../../tmp-json/';
     private _aborted: boolean;
+    private _translate: TranslateService;
 
     /**
      * Construtor padrão da Classe
      *
      * @param {AuthGuardService} authService
+     * @param {TranslateService} translate
      */
-    constructor(authService: AuthGuardService){
+    constructor(authService: AuthGuardService, translate: TranslateService){
         this._authService = authService;
+        this._translate = translate;
     }
 
     /**
@@ -62,6 +65,7 @@ export class HttpInterceptorService implements HttpInterceptor {
                         response = response.clone({
                             body: {}
                         });
+                        return null;
                     }
                 }
             }
@@ -122,7 +126,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     private showMessage(message:any): boolean{
         if(message.message){
             if(message.status = 'success'){
-               // NotificationService.success(this._translate.instant(`notification.success.${message.message}`));
+               NotificationService.success(this._translate.instant(`notification.success.${message.message}`));
             }
         }
 

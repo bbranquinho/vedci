@@ -1,7 +1,11 @@
 import 'node_modules/froala-editor/js/froala_editor.pkgd.min.js'
-import {Component, ViewEncapsulation} from '@angular/core'
+import {Component, OnInit, ViewEncapsulation} from '@angular/core'
 import {UserMessageModel} from "../../model/user-message.model";
-import {MessagePipe} from "../../pipe/message.pipe";
+import {ActivatedRoute, Router} from "@angular/router";
+import {AuthGuardService} from "../../service/auth-guard.service";
+import {UserModel} from "../../model/user.model";
+import {TranslateService} from "@ngx-translate/core";
+import {NotificationService} from "../../service/notification.service";
 
 declare let $ :any;
 @Component({
@@ -13,19 +17,47 @@ declare let $ :any;
     ],
     encapsulation: ViewEncapsulation.None,
 })
-export class MessageComponent{
+export class MessageComponent implements OnInit{
+    private _router: Router;
+    private _activatedRoute: ActivatedRoute;
+    private _translate: TranslateService;
+
     public messages: UserMessageModel[];
+    public user: UserModel;
     public froalaMessage;
     public isPrivate;
 
-    constructor(){
-        //Carrega as mensagens
-        UserMessageModel.getMessages(1,0,30).subscribe(
-            messages => {
-                this.messages = UserMessageModel.fromJson(messages);
-            }
-        );
+    /**
+     * Construtor padrão da classe
+     *
+     * @param {Router} router
+     * @param {ActivatedRoute} activatedRoute
+     * @param {TranslateService} translate
+     */
+    constructor(router: Router, activatedRoute: ActivatedRoute, translate: TranslateService){
+        this._router = router;
+        this._activatedRoute = activatedRoute;
+        this._translate =  translate;
+    }
 
+    /**
+     * Inicia as configurações
+     */
+    public ngOnInit(): void {
+        //Obtem o token caso esteja na url
+        this._activatedRoute.params.subscribe(params => {
+            let userId = params['user'] || AuthGuardService.user.id;
+
+            //Obtem os dados do usuário
+            UserModel.getUser(userId).subscribe(user =>{
+                this.user = user;
+            });
+
+            //Obtem as mensagens
+            UserMessageModel.getMessages(userId,0,30).subscribe(messages => {
+                this.messages = messages;
+            });
+        });
     }
 
     public froalaMainOptions: Object = {
@@ -105,22 +137,101 @@ export class MessageComponent{
 
     /**
      * Posta uma mensagem
+     *
+     * @param {UserModel} user
+     * @param {string} message
+     * @param {boolean} isPrivate
      */
-    public postMessage(){
-        let message =  new UserMessageModel(
-            null,
-            this.froalaMessage,
-            this.isPrivate,
-            null,
-            null
-        );
+    public postMessage(user: UserModel, message: string, isPrivate: boolean){
+        //Faz a postagem da mensagem
+        UserMessageModel.post(user, message, isPrivate).subscribe(message=>{
+            this.messages.unshift(message);
+        });
+    }
 
-        //Salva a mensagem
-        message.save().subscribe(
-            result => {
-                this.messages.unshift(message);
+
+
+    /**
+     *  Mostra e oculta a exibição de respostas
+     *
+     * @param {UserMessageModel} message
+     */
+    public showReply(message: UserMessageModel){
+        if(message.auxReplayActive){
+            message.auxReplayActive = false;
+        }else{
+            message.auxReplayActive = true;
+            message.auxReply = '';
+            message.auxIsPrivate = message.isPrivate;
+        }
+    }
+
+    /**
+     * Posta uma mensagem em reposta
+     *
+     * @param {UserMessageModel} message
+     */
+    public postMessageReply(message: UserMessageModel){
+        UserMessageModel.post(message.from, message.auxReply, message.auxIsPrivate).subscribe(resultMessage=>{
+            if(resultMessage.id){
+                NotificationService.success(this._translate.instant('message-post-success'));
+                message.auxReplayActive = false;
             }
-        );
+        });
+    }
+
+    /**
+     * Obtem a informação de há quanto tempo a mensagem foi postada
+     *
+     * @param {UserMessageModel} message
+     * @returns {string}
+     */
+    public getTimeAgo(message: UserMessageModel): string{
+        let diff = message.getSecondsAgo();
+        let time;
+        let return_message;
+
+        switch(true){
+            case (diff < 1):
+                return_message = this._translate.instant('time-ago.second');
+                break;
+            case (diff < 60):
+                time = diff;
+                return_message = this._translate.instant('time-ago.seconds',{"time": time});
+                break;
+            case (diff >= 60 && diff < 120):
+                return_message = this._translate.instant('time-ago.minute');
+                break;
+            case (diff >= 120 && diff < 3600):
+                time = parseInt((diff / 60).toString(), 10);
+                return_message = this._translate.instant('time-ago.minutes',{"time": time});
+                break;
+            case (diff >= 3600 && diff < 7200):
+                return_message = this._translate.instant('time-ago.hour');
+                break;
+            case (diff >= 7200 && diff < 86400):
+                time = parseInt((diff / 60 / 60).toString(), 10);
+                return_message = this._translate.instant('time-ago.hours',{"time": time});
+                break;
+            case (diff >= 86400 && diff < 172800):
+                return_message = this._translate.instant('time-ago.day');
+                break;
+            case (diff >= 172800):
+                time = parseInt((diff / 60 / 60 / 24).toString(), 10);
+                return_message = this._translate.instant('time-ago.days',{"time": time});
+                break;
+        }
+
+        return return_message;
+    }
+
+    /**
+     * Obtem o formato da data
+     *
+     * @returns {string}
+     */
+    public getDateFormat(): string{
+        return this._translate.instant("date-format.short");
     }
 
     /**

@@ -9,7 +9,6 @@ export class UserModel{
     public image: string;
     public email : string;
     public birthday : string;
-    private _tokenPassword: string;
 
     constructor(id?: number, firstName?: string, lastName?: string, image?: string, email?: string, birthday?: string) {
         this.id = id;
@@ -33,10 +32,12 @@ export class UserModel{
      * @param {number} id
      * @returns {Observable<any>}
      */
-    public static getUser(id: number): Observable<any>{
+    public static getUser(id: number): Observable<UserModel>{
         return HttpFactory.createHttp().get(
-            'user/profile'
-        );
+            `user/profile?${id}`
+        ).map(result=>{
+            return UserModel.fromJson(result);
+        });
     }
 
     /**
@@ -44,45 +45,45 @@ export class UserModel{
      *
      * @returns {Observable<any>}
      */
-    public requestTokenPassword(): Observable<any>{
+    public static requestTokenPassword(email: string): Observable<any>{
         return HttpFactory.createHttp().post(
             'user/reset',
             {
-                "email": this.email
+                "email": email
             }
         );
     }
 
     /**
-     * Seta o token
+     * confirma a conta
      *
-     * @param {string} token
+     * @returns {Observable<any>}
      */
-    public setTokenPassword(token: string){
-        this._tokenPassword = token;
+    public static confirmAccount(token:string): Observable<any>{
+        return HttpFactory.createHttp().post(
+            'user/confirm',
+            {
+                "token": token
+            }
+        );
     }
 
     /**
      * Realiza o reset da senha
      *
      * @param {string} password
+     * @param {string} token
      * @returns {Observable<any>}
      */
-    public changePassword(password: string): Observable<any>{
+    public static resetPassword(password: string, token: string): Observable<any>{
         return HttpFactory.createHttp().put(
             'user/reset',
             {
                 "password": password,
-                "token": this._tokenPassword
+                "token": token
             }
-        ).map( response => {
-            this.id = response['id'];
-            this.firstName = response['firstName'];
-            this.lastName = response['lastName'];
-            this.image = response['image'];
-        });
+        )
     }
-
 
     /**
      * Retonra os campos em JSON

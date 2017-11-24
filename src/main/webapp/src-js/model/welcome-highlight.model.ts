@@ -8,7 +8,7 @@ export class WelcomeHighlightModel{
     public url: string;
     public image: string;
 
-    constructor(id?: number, name?: string, url?: string, image?: string) {
+    constructor(id: number, name: string, url: string, image: string) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -21,10 +21,12 @@ export class WelcomeHighlightModel{
      *
      * @returns {Observable<any>}
      */
-    public static getHighlights(): Observable<any>{
+    public static getHighlights(): Observable<WelcomeHighlightModel[]>{
         return HttpFactory.createHttp().get(
             'welcome/highlight'
-        );
+        ).map(result=> {
+            return WelcomeHighlightModel.fromJson(result);
+        });
     }
 
     /**

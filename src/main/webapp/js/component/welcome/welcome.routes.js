@@ -18,6 +18,7 @@ exports.WelcomeRoutes = [
             { path: 'forgot-password', component: forgot_password_component_1.ForgotPasswordComponent },
             { path: 'forgot-password/:token', component: forgot_password_component_1.ForgotPasswordComponent },
             { path: 'register-confirmation', component: register_confirmation_component_1.RegisterConfirmationComponent },
+            { path: 'register-confirmation/:token', component: register_confirmation_component_1.RegisterConfirmationComponent },
             { path: 'logout', component: logout_component_1.LogoutComponent }
         ]
     }

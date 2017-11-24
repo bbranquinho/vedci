@@ -1,6 +1,5 @@
 import {TranslateLoader} from "@ngx-translate/core";
 import {Observable} from "rxjs/Observable";
-import {HttpClient} from "@angular/common/http";
 import {HttpFactory} from "./http.factory";
 
 /**
@@ -14,26 +13,23 @@ import {HttpFactory} from "./http.factory";
  * @access public
  * @package factory
  */
-export class TranslateLoaderFactory implements TranslateLoader {
-    http : HttpClient;
-    prefix: Array<string>;
-    suffix: string;
-    requestNumber: number;
-    countRequest: number;
+export class TranslateLoaderFactory implements TranslateLoader{
+    private _prefix: Array<string>;
+    private _suffix: string;
+    private _requestNumber: number;
+    private _countRequest: number;
 
     /**
      * Construtor padrão da Classe
      *
-     * @param {HttpClient} http
      * @param {Array<string>} prefix
      * @param {string} suffix
      */
-    constructor(http: HttpClient, prefix: Array<string> = ["i18n"], suffix: string = ".json")
+    constructor( prefix: Array<string> = ["i18n"], suffix: string = ".json")
     {
-        this.http = http;
-        this.prefix = prefix;
-        this.suffix = suffix;
-        this.requestNumber = prefix.length;
+        this._prefix = prefix;
+        this._suffix = suffix;
+        this._requestNumber = prefix.length;
     }
 
     /**
@@ -46,7 +42,10 @@ export class TranslateLoaderFactory implements TranslateLoader {
      */
     private getObservableForHttp(value, combinedObject, lang: string) {
         return Observable.create(observer => {
-            HttpFactory.createHiddenHttp().get(`${value}/${lang}${this.suffix}`)
+            if(value.endsWith('/')){
+                value = value.substr(0,value.length - 1);
+            }
+            HttpFactory.createHiddenHttp().get(`${value}/${lang}${this._suffix}`)
                 .map(response => response.json())
                 .subscribe((res) => {
                     //let responseObj = res.json();
@@ -56,8 +55,8 @@ export class TranslateLoaderFactory implements TranslateLoader {
                     });
 
                     //Atualiza as traduções só quando estiver os arquivos
-                    this.countRequest++;
-                    if(this.countRequest == this.requestNumber){
+                    this._countRequest++;
+                    if(this._countRequest == this._requestNumber){
                         observer.next(combinedObject);
                     }
 
@@ -75,10 +74,10 @@ export class TranslateLoaderFactory implements TranslateLoader {
      */
     public getTranslation(lang: string): Observable<any> {
         let combinedObject = {};
-        let oldObsevers;
+        let oldObsevers = null;
         let newObserver;
-        this.countRequest = 0;
-        this.prefix.forEach((value) =>{
+        this._countRequest = 0;
+        this._prefix.forEach((value) =>{
             newObserver = this.getObservableForHttp(value, combinedObject, lang);
             if (oldObsevers == null) {
                 oldObsevers = newObserver;

@@ -5,9 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
@@ -20,41 +17,31 @@ var register_component_1 = require("./welcome/register.component");
 var forgot_password_component_1 = require("./welcome/forgot-password.component");
 var translate_loader_factory_1 = require("../factory/translate-loader.factory");
 var register_confirmation_component_1 = require("./welcome/register-confirmation.component");
-var common_1 = require("@angular/common");
 var footer_module_1 = require("./footer.module");
-var http_interceptor_service_1 = require("../service/http-interceptor.service");
 var forms_1 = require("@angular/forms");
 var logout_component_1 = require("./welcome/logout.component");
+var language_module_1 = require("./language.module");
 var WelcomeModule = /** @class */ (function () {
-    function WelcomeModule(translate) {
-        // this language will be used as a fallback when a translation isn't found in the current language
-        translate.setDefaultLang('pt-br');
-        // the lang to use, if the lang isn't available, it will use the current loader to get them
-        translate.use('pt-br');
+    function WelcomeModule() {
     }
     WelcomeModule = __decorate([
         core_1.NgModule({
             imports: [
-                common_1.CommonModule,
                 http_1.HttpClientModule,
                 footer_module_1.FooterModule,
                 forms_1.FormsModule,
+                language_module_1.LanguageModule,
                 router_1.RouterModule.forChild(welcome_routes_1.WelcomeRoutes),
-                core_2.TranslateModule.forRoot({
+                core_2.TranslateModule.forChild({
                     loader: {
                         provide: core_2.TranslateLoader,
-                        useFactory: function (http) { return new translate_loader_factory_1.TranslateLoaderFactory(http, [
+                        useFactory: function () { return new translate_loader_factory_1.TranslateLoaderFactory([
                             './translate/welcome/',
-                            './translate/general/footer/',
-                            './translate/general/notification/'
-                        ], '.json'); },
-                        deps: [http_1.HttpClient]
+                            './translate/general/footer/'
+                        ], '.json'); }
                     },
                     isolate: true
                 })
-            ],
-            providers: [
-                { provide: http_1.HTTP_INTERCEPTORS, useClass: http_interceptor_service_1.HttpInterceptorService, multi: true }
             ],
             declarations: [
                 welcome_template_1.WelcomeTemplate,
@@ -64,8 +51,7 @@ var WelcomeModule = /** @class */ (function () {
                 register_component_1.RegisterComponent,
                 logout_component_1.LogoutComponent
             ],
-        }),
-        __metadata("design:paramtypes", [core_2.TranslateService])
+        })
     ], WelcomeModule);
     return WelcomeModule;
 }());
