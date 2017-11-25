@@ -23,14 +23,6 @@ public final class ResourcePaths {
     
     public static final String PERMISSION_PATH = PRIVATE_ROOT_PATH + "/permission";
 
-    public static final String RESIDENCIA_PATH =  PRIVATE_ROOT_PATH + "/residencia";
-
-    public static final String COMODO_PATH =  PRIVATE_ROOT_PATH + "/comodo";
-
-    public static final String SENSOR_PATH =  PRIVATE_ROOT_PATH + "/sensor";
-
-    public static final String DISPOSITIVO_PATH =  PRIVATE_ROOT_PATH + "/dispositivo";
-
 
     ///////////////////////////////////////////////////////////////
     // PUBLIC PATHS
