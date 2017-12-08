@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="Kamikaze">
+		<createTable tableName="tb_user">
+			<column name="user_id" type="BIGINT(20)" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="first_name" type="varchar(30)">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_name" type="varchar(70)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+			<column name="birthday" type="DATE">
+				<constraints nullable="false" />
+			</column>
+			<column name="password" type="varchar(32)">
+				<constraints nullable="false" />
+			</column>
+			<column name="registration_date" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="image" type="varchar(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="user_status_id" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="user_gender_id" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+			<column name="user_permission_id" type="BIGINT">
+				<constraints nullable="false"/>
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="2" author="Kamikaze">
+		<addForeignKeyConstraint baseColumnNames="user_status_id"
+            baseTableName="tb_user"
+            constraintName="fk_user_status"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="user_status_id"
+            referencedTableName="tb_user_status"/>
+            
+         <addForeignKeyConstraint baseColumnNames="user_gender_id"
+            baseTableName="tb_user"
+            constraintName="fk_user_gender"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="user_gender_id"
+            referencedTableName="tb_user_gender"/>
+            
+         <addForeignKeyConstraint baseColumnNames="user_permission_id"
+            baseTableName="tb_user"
+            constraintName="fk_user_permission"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="user_permission_id"
+            referencedTableName="tb_user_permission"/>
+	</changeSet>
+
+	<changeSet id="3" author="Kamikaze">
+		<insert tableName="tb_user">
+			<column name="user_id" value="1" />
+			<column name="email" value="kamikaze@icefenix.com" />
+			<column name="first_name" value="Kamikaze" />
+			<column name="last_name" value="IceFenix" />
+			<column name="birthday" value="1990-08-26" />
+			<column name="password" value="0563789849d188ec7d4c865846596ec0" />
+			<column name="registration_date" value="2017-12-02 17:11:00" />
+			<column name="image" value="user/image/1.jpg" />
+			<column name="user_status_id" value="1" />
+			<column name="user_gender_id" value="1" />
+			<column name="user_permission_id" value="1" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

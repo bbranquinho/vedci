@@ -52,6 +52,7 @@ var ForgotPasswordComponent = /** @class */ (function () {
             if (result.status) {
                 notification_service_1.NotificationService.success(_this._translate.instant("password-reset-success"));
                 _this.forgotPasswordPage = false;
+                _this.token = result.userResetToken;
             }
             else {
                 notification_service_1.NotificationService.danger(_this._translate.instant("password-reset-error"));

@@ -34,7 +34,7 @@ var HttpInterceptorService = /** @class */ (function () {
      * @param {TranslateService} translate
      */
     function HttpInterceptorService(authService, translate) {
-        this._baseUrl = '../../tmp-json/';
+        this._baseUrl = 'http://127.0.0.1:8080/api/';
         this._authService = authService;
         this._translate = translate;
     }
@@ -46,6 +46,7 @@ var HttpInterceptorService = /** @class */ (function () {
      */
     HttpInterceptorService.prototype.intercept = function (req, next) {
         var _this = this;
+        console.log(req);
         //Monta o header
         req = this.getHeaders(req);
         return next.handle(req).map(function (response) {
@@ -82,9 +83,9 @@ var HttpInterceptorService = /** @class */ (function () {
     HttpInterceptorService.prototype.getHeaders = function (req) {
         req = req.clone({
             url: this.getUrl(req.url, req.method),
-            method: "get",
+            //method: "get", //Alterar usado somente para teste
             setHeaders: {
-                Authorization: "LOUCO É POUCO"
+                "auth-token": auth_guard_service_1.AuthGuardService.token || ''
             }
         });
         return req;
@@ -104,13 +105,16 @@ var HttpInterceptorService = /** @class */ (function () {
         else {
             url = "" + this._baseUrl + url;
         }
+        // Substui ? da url por /
+        url = url.replace('?', '/');
         //Trata as passagens de parametos -- Alterar usado somente para teste
-        if (url.indexOf('?') >= 0) {
-            url = url.replace('?', "." + method + ".json?");
+        /*
+        if(url.indexOf('?')>= 0){
+            url = url.replace('?',`.${method}.json?`);
+        }else{
+            url = `${url}.${method}.json`;
         }
-        else {
-            url = url + "." + method + ".json";
-        }
+        */
         return url;
     };
     /**

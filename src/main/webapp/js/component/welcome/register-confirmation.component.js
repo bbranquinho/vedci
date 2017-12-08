@@ -40,7 +40,7 @@ var RegisterConfirmationComponent = /** @class */ (function () {
     RegisterConfirmationComponent.prototype.confirmAccount = function () {
         var _this = this;
         user_model_1.UserModel.confirmAccount(this.token).subscribe(function (result) {
-            if (result.confirm == true) {
+            if (result.status == true) {
                 notification_service_1.NotificationService.success(_this._translate.instant("account-confirm-success"));
                 _this._router.navigateByUrl("/welcome");
             }

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="Kamikaze">
+		<createTable tableName="tb_user_status">
+			<column name="user_status_id" type="BIGINT(20)" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="description" type="VARCHAR(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="active" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet id="2" author="Kamikaze">
+		<insert tableName="tb_user_status">
+			<column name="user_status_id" value="1" />
+			<column name="description" value="Ativo" />
+			<column name="active" value="1" />
+		</insert>
+		<insert tableName="tb_user_status">
+			<column name="user_status_id" value="2" />
+			<column name="description" value="Troca de senha solicitada" />
+			<column name="active" value="1" />
+		</insert>
+		<insert tableName="tb_user_status">
+			<column name="user_status_id" value="3" />
+			<column name="description" value="Troca de seha obrigatória" />
+			<column name="active" value="0" />
+		</insert>	
+		<insert tableName="tb_user_status">
+			<column name="user_status_id" value="4" />
+			<column name="description" value="Aguardando confirmação do e-mail" />
+			<column name="active" value="0" />
+		</insert>
+		<insert tableName="tb_user_status">
+			<column name="user_status_id" value="5" />
+			<column name="description" value="Conta cancelada" />
+			<column name="active" value="0" />
+		</insert>
+		<insert tableName="tb_user_status">
+			<column name="user_status_id" value="6" />
+			<column name="description" value="Conta banida" />
+			<column name="active" value="0" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

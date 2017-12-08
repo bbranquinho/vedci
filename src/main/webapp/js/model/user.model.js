@@ -3,13 +3,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_factory_1 = require("../factory/http.factory");
 require("rxjs/add/operator/map");
 var UserModel = /** @class */ (function () {
-    function UserModel(id, firstName, lastName, image, email, birthday) {
+    function UserModel(id, firstName, lastName, image, email, birthday, gender) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.image = image;
         this.email = email;
         this.birthday = birthday;
+        this.gender = gender;
     }
     /**
      * Retorna o nome completo do Usuário
@@ -62,6 +63,27 @@ var UserModel = /** @class */ (function () {
         });
     };
     /**
+     * Registra um novo usúario
+     *
+     * @param {string} firstName
+     * @param {string} lastName
+     * @param {string} email
+     * @param {string} birthday
+     * @param {number} gender
+     * @param {string} password
+     * @returns {Observable<any>}
+     */
+    UserModel.register = function (firstName, lastName, email, birthday, gender, password) {
+        return http_factory_1.HttpFactory.createHttp().post('user/register', {
+            "firstName": firstName,
+            "lastName": lastName,
+            "email": email,
+            "birthday": birthday,
+            "gender": gender,
+            "password": password
+        });
+    };
+    /**
      * Retonra os campos em JSON
      *
      * @returns {any}
@@ -73,7 +95,8 @@ var UserModel = /** @class */ (function () {
             "lastName": this.lastName,
             "image": this.image,
             "email": this.email,
-            "birthday": this.birthday
+            "birthday": this.birthday,
+            "gender": this.gender
         };
     };
     /**
@@ -96,10 +119,10 @@ var UserModel = /** @class */ (function () {
      */
     UserModel.fromJson = function (json) {
         if (json instanceof Array) {
-            return json.map(function (json) { return new UserModel(json.id, json.firstName, json.lastName, json.image, json.email, json.birthday); });
+            return json.map(function (json) { return new UserModel(json.id, json.firstName, json.lastName, json.image, json.email, json.birthday, json.gender); });
         }
         else {
-            return new UserModel(json.id, json.firstName, json.lastName, json.image, json.email, json.birthday);
+            return new UserModel(json.id, json.firstName, json.lastName, json.image, json.email, json.birthday, json.gender);
         }
     };
     return UserModel;

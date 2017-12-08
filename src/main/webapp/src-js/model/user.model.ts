@@ -9,14 +9,16 @@ export class UserModel{
     public image: string;
     public email : string;
     public birthday : string;
+    public gender : number;
 
-    constructor(id?: number, firstName?: string, lastName?: string, image?: string, email?: string, birthday?: string) {
+    constructor(id: number, firstName: string, lastName: string, image: string, email: string, birthday: string, gender: number) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.image = image;
         this.email = email;
         this.birthday = birthday;
+        this.gender = gender;
     }
 
     /**
@@ -86,6 +88,31 @@ export class UserModel{
     }
 
     /**
+     * Registra um novo usúario
+     *
+     * @param {string} firstName
+     * @param {string} lastName
+     * @param {string} email
+     * @param {string} birthday
+     * @param {number} gender
+     * @param {string} password
+     * @returns {Observable<any>}
+     */
+    public static register(firstName: string, lastName: string, email: string, birthday: string, gender: number, password: string): Observable<any>{
+        return HttpFactory.createHttp().post(
+            'user/register',
+            {
+                "firstName": firstName,
+                "lastName": lastName,
+                "email": email,
+                "birthday": birthday,
+                "gender": gender,
+                "password": password
+            }
+        )
+    }
+
+    /**
      * Retonra os campos em JSON
      *
      * @returns {any}
@@ -97,7 +124,8 @@ export class UserModel{
             "lastName": this.lastName,
             "image": this.image,
             "email": this.email,
-            "birthday": this.birthday
+            "birthday": this.birthday,
+            "gender": this.gender
         }
     }
 
@@ -131,7 +159,8 @@ export class UserModel{
                 json.lastName,
                 json.image,
                 json.email,
-                json.birthday
+                json.birthday,
+                json.gender
             ));
         }else{
             return new UserModel(
@@ -140,7 +169,8 @@ export class UserModel{
                 json.lastName,
                 json.image,
                 json.email,
-                json.birthday
+                json.birthday,
+                json.gender
             );
         }
     }

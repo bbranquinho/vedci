@@ -1,22 +1,23 @@
-package org.vedci;
+package com.vedci;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.session.SessionAutoConfiguration;
 import org.springframework.context.ApplicationContext;
-import org.vedci.utils.AppConfig;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
-@SpringBootApplication
-public class AppMain {
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, SessionAutoConfiguration.class })
+public class Application {
 
-    private static final Logger LOGGER = LogManager.getLogger(AppMain.class);
+    private static final Logger LOGGER = LogManager.getLogger(Application.class);
 
     public static void main(String[] args) throws UnknownHostException {
-        ApplicationContext app = SpringApplication.run(AppConfig.class, args);
+        ApplicationContext app =  SpringApplication.run(Configuration.class, args);
 
         String applicationName = app.getEnvironment().getProperty("spring.application.name");
         String contextPath = app.getEnvironment().getProperty("server.contextPath");
@@ -29,5 +30,4 @@ public class AppMain {
                 "\n|   External:   http://" + hostAddress + ":" + port + contextPath +
                 "\n|------------------------------------------------------------");
     }
-
 }

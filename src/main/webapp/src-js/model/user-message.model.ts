@@ -125,8 +125,8 @@ export class UserMessageModel {
                 json.id,
                 json.message,
                 json.private,
-                new UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image),
-                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image),
+                new UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image, null, null, null),
+                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image, null, null, null),
                 new Date(json.date)
             ));
         }else{
@@ -134,8 +134,8 @@ export class UserMessageModel {
                 json.id,
                 json.message,
                 json.private,
-                new UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image),
-                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image),
+                new UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image, null, null, null),
+                new UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image, null, null, null),
                 new Date(json.date)
             );
         }

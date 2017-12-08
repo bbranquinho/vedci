@@ -4,16 +4,16 @@
             <form class="uk-form-stacked">
 
                 <div class="uk-margin">
-                    <label class="uk-form-label" for="form-login">{{'username' | translate}}</label>
+                    <label class="uk-form-label" for="form-email">{{'username' | translate}}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-login" name="email" type="text" placeholder="{{'username-placeholder' | translate}}">
+                        <input class="uk-input" id="form-email" [(ngModel)]="email" name="email" type="text" placeholder="{{'username-placeholder' | translate}}">
                     </div>
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label" for="form-password">{{'password' | translate}}</label>
                     <div class="uk-form-controls">
-                        <input class="uk-input" id="form-password" name="password" type="password" placeholder="{{'password-placeholder' | translate}}">
+                        <input class="uk-input" id="form-password" [(ngModel)]="password" name="password" type="password" placeholder="{{'password-placeholder' | translate}}">
                     </div>
                 </div>
 

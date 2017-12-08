@@ -9,4 +9,26 @@
     <include file="liquibase/config/changelog/20170908214000_permission.xml" />
     <include file="liquibase/config/changelog/20170908214001_user.xml" />
     <include file="liquibase/config/changelog/20170908214002_user_permission.xml" />
+    
+    <include file="liquibase/config/changelog/20170908214003_user_permission.xml" />
+    <include file="liquibase/config/changelog/20170908214002_user.xml" /> 
+    <include file="liquibase/config/changelog/20170908214001_permission.xml" />
+
+    
+    <!-- INÍCIO tb_user_gender -->
+    <include file="liquibase/config/changelog/tb_user_gender/2017-11-25_00000.xml"/>
+    <!-- FIM tb_user_gender -->
+    
+    <!-- INÍCIO tb_user_status -->
+    <include file="liquibase/config/changelog/tb_user_status/2017-11-25_00000.xml" />
+    <!-- FIM tb_user_status -->
+    
+    <!-- INÍCIO tb_user_permission -->
+    <include file="liquibase/config/changelog/tb_user_permission/2017-11-25_00000.xml" />
+    <!-- FIM tb_user_permission -->
+    
+    <!-- INÍCIO tb_user -->
+    <include file="liquibase/config/changelog/tb_user/2017-11-25_00000.xml" />
+    <!-- FIM tb_user -->
+    
 </databaseChangeLog>

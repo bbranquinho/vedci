@@ -93,10 +93,10 @@ var UserMessageModel = /** @class */ (function () {
      */
     UserMessageModel.fromJson = function (json) {
         if (json instanceof Array) {
-            return json.map(function (json) { return new UserMessageModel(json.id, json.message, json.private, new user_model_1.UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image), new user_model_1.UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image), new Date(json.date)); });
+            return json.map(function (json) { return new UserMessageModel(json.id, json.message, json.private, new user_model_1.UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image, null, null, null), new user_model_1.UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image, null, null, null), new Date(json.date)); });
         }
         else {
-            return new UserMessageModel(json.id, json.message, json.private, new user_model_1.UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image), new user_model_1.UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image), new Date(json.date));
+            return new UserMessageModel(json.id, json.message, json.private, new user_model_1.UserModel(json.to.id, json.to.firstName, json.to.lastName, json.to.image, null, null, null), new user_model_1.UserModel(json.from.id, json.from.firstName, json.from.lastName, json.from.image, null, null, null), new Date(json.date));
         }
     };
     /**

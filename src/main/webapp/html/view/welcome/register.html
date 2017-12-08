@@ -9,21 +9,31 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-first-name">{{'first-name' | translate}}</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-first-name" type="text" placeholder="{{'first-name-placeholder' | translate}}">
+                                    <input class="uk-input" id="form-first-name" [(ngModel)]="firstName" name="firstName" type="text" placeholder="{{'first-name-placeholder' | translate}}">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-last-name">{{'last-name' | translate}}</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-last-name" type="text" placeholder="{{'last-name-placeholder' | translate}}">
+                                    <input class="uk-input" id="form-last-name" [(ngModel)]="lastName" name="lastName" type="text" placeholder="{{'last-name-placeholder' | translate}}">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-sex">{{'gender' | translate}}</label>
+                                <div class="uk-form-controls">
+                                    <select class="uk-input" [(ngModel)]="gender" name="gender" id="form-sex">
+                                        <option value="1">{{"male" | translate}}</option>
+                                        <option value="2">{{"female" | translate}}</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div>
                                 <label class="uk-form-label" for="form-email">{{'email' | translate}}</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-email" type="text" placeholder="{{'email-placeholder' | translate}}">
+                                    <input class="uk-input" [(ngModel)]="email" name="email" id="form-email" type="text" placeholder="{{'email-placeholder' | translate}}">
                                 </div>
                             </div>
 
@@ -37,21 +47,28 @@
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-email-confirm">{{'email-confirm' | translate}}</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-email-confirm" type="text" placeholder="{{'email-confirm-placeholder' | translate}}">
+                                    <input class="uk-input" [(ngModel)]="emailConfirm" name="emailConfirm" id="form-email-confirm" type="text" placeholder="{{'email-confirm-placeholder' | translate}}">
+                                </div>
+                            </div>
+
+                            <div class="uk-margin">
+                                <label class="uk-form-label" for="form-birthday">{{'birthday' | translate}}</label>
+                                <div class="uk-form-controls" data-uk-form-select>
+                                    <input type="text" class="uk-input" id="form-birthday" [(ngModel)]="birthday" name="birthday" data-uk-datepicker="{format:'DD.MM.YYYY'}" placeholder="{{'birthday-placeholder' | translate}}">
                                 </div>
                             </div>
 
                             <div class="uk-margin">
                                 <label class="uk-form-label" for="form-password">{{'password' | translate}}</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-password" type="password" placeholder="{{'password-placeholder' | translate}}">
+                                    <input class="uk-input" id="form-password" [(ngModel)]="password" name="password" type="password" placeholder="{{'password-placeholder' | translate}}">
                                 </div>
                             </div>
 
                             <div>
                                 <label class="uk-form-label" for="form-password-confirm">{{'password-confirm' | translate}}</label>
                                 <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-password-confirm" type="password" placeholder="{{'password-confirm-placeholder' | translate}}">
+                                    <input class="uk-input" id="form-password-confirm" [(ngModel)]="passwordConfirm" name="passwordConfirm" type="password" placeholder="{{'password-confirm-placeholder' | translate}}">
                                 </div>
                             </div>
 
@@ -65,7 +82,7 @@
                     <div class="uk-width-1-1">
                         <div class="uk-align-right">
                             <button class="uk-button uk-button-default">{{'clear' | translate}}</button>
-                            <button class="uk-button uk-button-primary">{{'register' | translate}}</button>
+                            <button (click)="register()"  class="uk-button uk-button-primary">{{'register' | translate}}</button>
                         </div>
                         <div class="uk-clearfix"></div>
                     </div>

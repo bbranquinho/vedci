@@ -3,6 +3,8 @@ import {UserModel} from "../../model/user.model";
 import {AuthGuardService} from "../../service/auth-guard.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
 import {WelcomeHighlightModel} from "../../model/welcome-highlight.model";
+import {TranslateService} from "@ngx-translate/core";
+import {NotificationService} from "../../service/notification.service";
 @Component({
     templateUrl: '../../../html/view/welcome/login.html'
 })
@@ -10,6 +12,7 @@ export class LoginComponent implements OnInit{
     private _router: Router;
     private _activatedRoute: ActivatedRoute;
     private _returnUrl: string;
+    private _translate: TranslateService;
 
     public email: string;
     public password: string;
@@ -17,12 +20,15 @@ export class LoginComponent implements OnInit{
 
     /**
      * Construtor padrão
+     *
      * @param {Router} router
      * @param {ActivatedRoute} activatedRoute
+     * @param {TranslateService} translate
      */
-    constructor(router: Router, private activatedRoute: ActivatedRoute){
+    constructor(router: Router, private activatedRoute: ActivatedRoute, translate: TranslateService){
         this._router = router;
         this._activatedRoute = activatedRoute;
+        this._translate = translate;
     }
 
     /**
@@ -44,12 +50,16 @@ export class LoginComponent implements OnInit{
      * Faz o login do usuário
      */
     public login(): void{
-        let user = UserModel.login(this.email, this.password).subscribe(result => {
-            AuthGuardService.addToLocalStorage(
-                UserModel.fromJson(result.user),
-                result.token
-            );
-            this._router.navigateByUrl(this._returnUrl);
+        UserModel.login(this.email, this.password).subscribe(result => {
+            if(result.status == "success"){
+                AuthGuardService.addToLocalStorage(
+                    UserModel.fromJson(result.user),
+                    result.token
+                );
+                this._router.navigateByUrl(this._returnUrl);
+            }else{
+                NotificationService.danger(this._translate.instant("login-failed"));
+            }
         });
     }
 }

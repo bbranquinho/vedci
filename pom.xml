@@ -59,8 +59,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>${postgresql.version}</version>
-        </dependency>
+            </dependency>
 
         <!-- COMMONS LANG3 -->
         <dependency>
@@ -81,6 +80,12 @@
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
             <version>${springfox.swagger.ui.version}</version>
+        </dependency>
+        
+        <!-- JSON -->
+        <dependency>
+        	<groupId>org.json</groupId>
+        	<artifactId>json</artifactId>
         </dependency>
 
         <!-- JUNIT -->
@@ -119,9 +124,9 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-test</artifactId>
-            <version>1.4.4.RELEASE</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -130,8 +135,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>${spring.boot.version}</version>
-            </plugin>
+                </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>

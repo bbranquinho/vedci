@@ -2,6 +2,7 @@
   "intercept": {
   },
   "body": {
+    "status": "success",
     "user":{
       "id": 1,
       "firstName": "Ana",

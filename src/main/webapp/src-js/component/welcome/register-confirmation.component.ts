@@ -40,7 +40,7 @@ export class RegisterConfirmationComponent implements OnInit{
 
     public confirmAccount(): void {
         UserModel.confirmAccount(this.token).subscribe(result =>{
-            if(result.confirm == true){
+            if(result.status == true){
                 NotificationService.success(this._translate.instant("account-confirm-success"));
                 this._router.navigateByUrl("/welcome")
             }else{

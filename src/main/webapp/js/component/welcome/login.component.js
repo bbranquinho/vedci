@@ -14,16 +14,21 @@ var user_model_1 = require("../../model/user.model");
 var auth_guard_service_1 = require("../../service/auth-guard.service");
 var router_1 = require("@angular/router");
 var welcome_highlight_model_1 = require("../../model/welcome-highlight.model");
+var core_2 = require("@ngx-translate/core");
+var notification_service_1 = require("../../service/notification.service");
 var LoginComponent = /** @class */ (function () {
     /**
      * Construtor padrão
+     *
      * @param {Router} router
      * @param {ActivatedRoute} activatedRoute
+     * @param {TranslateService} translate
      */
-    function LoginComponent(router, activatedRoute) {
+    function LoginComponent(router, activatedRoute, translate) {
         this.activatedRoute = activatedRoute;
         this._router = router;
         this._activatedRoute = activatedRoute;
+        this._translate = translate;
     }
     /**
      * Chamado no início da função
@@ -43,16 +48,21 @@ var LoginComponent = /** @class */ (function () {
      */
     LoginComponent.prototype.login = function () {
         var _this = this;
-        var user = user_model_1.UserModel.login(this.email, this.password).subscribe(function (result) {
-            auth_guard_service_1.AuthGuardService.addToLocalStorage(user_model_1.UserModel.fromJson(result.user), result.token);
-            _this._router.navigateByUrl(_this._returnUrl);
+        user_model_1.UserModel.login(this.email, this.password).subscribe(function (result) {
+            if (result.status == "success") {
+                auth_guard_service_1.AuthGuardService.addToLocalStorage(user_model_1.UserModel.fromJson(result.user), result.token);
+                _this._router.navigateByUrl(_this._returnUrl);
+            }
+            else {
+                notification_service_1.NotificationService.danger(_this._translate.instant("login-failed"));
+            }
         });
     };
     LoginComponent = __decorate([
         core_1.Component({
             templateUrl: '../../../html/view/welcome/login.html'
         }),
-        __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, core_2.TranslateService])
     ], LoginComponent);
     return LoginComponent;
 }());

@@ -20,7 +20,7 @@ import {TranslateService} from "@ngx-translate/core";
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
     private _authService : AuthGuardService;
-    private _baseUrl: string = '../../tmp-json/';
+    private _baseUrl: string = 'http://127.0.0.1:8080/api/';
     private _aborted: boolean;
     private _translate: TranslateService;
 
@@ -42,6 +42,8 @@ export class HttpInterceptorService implements HttpInterceptor {
      * @returns {Observable<HttpEvent<any>>}
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+        console.log(req);
 
         //Monta o header
         req = this.getHeaders(req);
@@ -81,11 +83,12 @@ export class HttpInterceptorService implements HttpInterceptor {
      * @returns {HttpRequest<any>}
      */
     private getHeaders(req: HttpRequest<any>): HttpRequest<any> {
+
         req = req.clone({
             url: this.getUrl(req.url, req.method),
-            method: "get", //Alterar usado somente para teste
+            //method: "get", //Alterar usado somente para teste
             setHeaders: {
-                Authorization: "LOUCO É POUCO"
+                "auth-token": AuthGuardService.token || ''
             }
         });
 
@@ -107,13 +110,18 @@ export class HttpInterceptorService implements HttpInterceptor {
             url = `${this._baseUrl}${url}`;
         }
 
+        // Substui ? da url por /
+        url = url.replace('?','/');
+
+
         //Trata as passagens de parametos -- Alterar usado somente para teste
+        /*
         if(url.indexOf('?')>= 0){
-            url = url.replace('?',`.${method}.json?`)
+            url = url.replace('?',`.${method}.json?`);
         }else{
             url = `${url}.${method}.json`;
         }
-
+        */
         return url;
     }
 

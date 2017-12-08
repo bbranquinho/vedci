@@ -56,6 +56,7 @@ export class ForgotPasswordComponent implements OnInit{
             if(result.status){
                 NotificationService.success(this._translate.instant("password-reset-success"));
                 this.forgotPasswordPage = false;
+                this.token = result.userResetToken;
             }else{
                 NotificationService.danger(this._translate.instant("password-reset-error"));
             }
