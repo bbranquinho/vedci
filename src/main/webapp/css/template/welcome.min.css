@@ -1,1 +1,60 @@
-.ice-welcome-nav{padding:15px 0;border:none;background:#000}.ice-welcome-container{margin-top:20px}.ice-highlights-img{width:20%}@media (min-width:960px){.ice-highlights-margin{margin-top:50px}}
+#navbar {
+    height: 60px;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.23)
+}
+
+#logoNavbar {
+    width: 100px;
+}
+
+#form-pesquisa {
+    background: #f2f2f2;
+}
+
+#btns-navbar {
+    position: relative;
+    right: 10px;
+}
+
+.logar-dropdown {
+    height: 122px;
+}
+
+#btn-login {
+    position: relative;
+    right: 5px;
+}
+
+#form-usuario {
+    position: relative;
+    top: -10px;
+    background: #f2f2f2;
+}
+
+#form-senha {
+    position: relative;
+    top: -15px;
+    background: #f2f2f2;
+}
+
+#link-novasenha {
+    position: absolute;
+    top: 137px;
+}
+
+#btn-novasenha {
+    position: absolute;
+    top: 120px;
+    right: 26px;
+}
+
+.uk-navbar-nav {
+    position: relative;
+    left: 5px;
+}
+
+.uk-navbar-left {
+    position: relative;
+    left: 5px;
+}

@@ -1,0 +1,77 @@
+<nav class="ice-welcome-nav">
+
+    <nav class="uk-navbar-container uk-margin" uk-navbar id="navbar">
+        <div class="uk-navbar-left">
+            <a routerLink="/welcome"><img src="../img/logo.png" id="logoNavbar"/></a>
+
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: list"></span>
+                        Categoria
+                    </a>
+                    <div class="uk-navbar-dropdown" id="dropdown-categorias">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="uk-navbar-item">
+                <form action="javascript:void(0)">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
+                        <input class="uk-input uk-width-large uk-margin" type="text" placeholder="Pesquisar Cursos"
+                               id="form-pesquisa">
+                    </div>
+                </form>
+            </div>
+
+            <a routerLink="/welcome/instruct">
+                <button class="uk-button uk-button-default" id="btns-navbar">Ensine</button>
+            </a>
+        </div>
+
+
+        <div class="uk-navbar-right">
+            <div class="uk-navbar-item">
+                <div class="uk-inline">
+
+                    <div class="uk-inline btn-logar">
+                        <button class="uk-button uk-button-default" id="btn-login" type="button">Logar</button>
+                        <div uk-dropdown="mode: click">
+                            <ul class="uk-nav uk-dropdown-nav logar-dropdown">
+                                <li>
+                                    <input class="uk-input uk-width-medium uk-margin" type="text" placeholder="Usuário"
+                                           id="form-usuario">
+                                </li>
+                                <li>
+                                    <input class="uk-input uk-width-medium uk-margin" type="text" placeholder="Senha"
+                                           id="form-senha">
+                                </li>
+                                <li>
+                                    <a routerLink="/welcome/forgot-password" id="link-novasenha">Esqueceu a senha?</a>
+                                    <div id="btn-novasenha">
+                                        <button class="uk-button uk-button-default" type="button">Logar</button>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <a routerLink="/welcome/register">
+                        <button class="uk-button uk-button-default">Cadastrar</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</nav>

@@ -9,19 +9,5 @@
   "certificate" : "Certificado",
   "sign-out" : "Sair",
   "message-private" : "Mensagem privada",
-  "send" : "Enviar",
-  "message-post-success": "Mensagem enviada com sucesso",
-  "time-ago": {
-    "second": "Há 1 segundo atrás",
-    "seconds": "Há {{time}} segundos atrás",
-    "minute": "Há 1 minuto atrás",
-    "minutes": "Há {{time}} munutos atrás",
-    "hour": "Há 1 hora atrás",
-    "hours": "Há {{time}} horas atrás",
-    "day": "Há 1 dia atrás",
-    "days": "Há {{time}} dias atrás"
-  },
-  "date-format": {
-    "short": "d/M/yy H:mm"
-  }
+  "send" : "Enviar"
 }

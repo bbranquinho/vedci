@@ -1,7 +1,7 @@
-<div class="uk-text-center" *ngIf="userLogged">
+<div class="uk-text-center">
     <div class="ice-user-profile-img uk-overlay-hover uk-border-circle">
         <figure class="ice-profile-overlay">
-            <img class="uk-border-circle" [src]="userLogged.image" alt="">
+            <img class="uk-border-circle" [src]="getImgeProfile()" alt="">
             <figcaption class="uk-overlay-panel uk-overlay-background uk-flex uk-flex-center uk-flex-middle uk-text-center uk-border-circle">
                 <div>
                     <a href="#" uk-icon="icon: push" class="uk-icon-button"></a>
@@ -9,7 +9,7 @@
             </figcaption>
         </figure>
     </div>
-    <p class="uk-text-uppercase uk-margin-top-remove uk-text-muted">{{userLogged.getFullName()}}</p>
+    <p class="uk-text-uppercase uk-margin-top-remove uk-text-muted">Ismael Fagundes da Silva</p>
 </div>
 
 <ul class="uk-nav-default uk-nav-parent-icon ice-user-side-menu" uk-nav>
@@ -23,5 +23,5 @@
     <li><a routerLink="/user/deposit"><span class="uk-margin-small-right" uk-icon="icon: plus-circle"></span> {{"deposit" | translate}}</a></li>
     <li><a routerLink="/user/withdrawal"><span class="uk-margin-small-right" uk-icon="icon: minus-circle"></span> {{"withdrawal" | translate}}</a></li>
     <li class="uk-nav-divider"></li>
-    <li><a routerLink="/welcome/logout"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> {{"sign-out" | translate}}</a></li>
+    <li><a routerLink="/welcome/sign-out"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> {{"sign-out" | translate}}</a></li>
 </ul>

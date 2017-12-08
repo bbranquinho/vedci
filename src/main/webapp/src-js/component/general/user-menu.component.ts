@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core'
+import {Component} from '@angular/core'
 
 @Component({
     selector: 'user-menu',
@@ -6,7 +6,8 @@ import {Component, Input} from '@angular/core'
 })
 
 export class UserMenuComponent{
-    //Usuário logado
-    @Input() userLogged;
 
+    getImgeProfile(): string {
+        return "../../../img/tmp/user-250/1.jpg";
+    }
 }

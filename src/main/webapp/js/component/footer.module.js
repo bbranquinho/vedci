@@ -7,17 +7,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/common/http");
 var footer_component_1 = require("./general/footer.component");
+var core_2 = require("@ngx-translate/core");
+var common_1 = require("@angular/common");
 var router_1 = require("@angular/router");
-var language_module_1 = require("./language.module");
 var FooterModule = /** @class */ (function () {
     function FooterModule() {
     }
     FooterModule = __decorate([
         core_1.NgModule({
             imports: [
-                router_1.RouterModule,
-                language_module_1.LanguageModule
+                common_1.CommonModule,
+                http_1.HttpClientModule,
+                core_2.TranslateModule,
+                router_1.RouterModule
             ],
             declarations: [
                 footer_component_1.FooterComponent

@@ -1,56 +1,403 @@
+<welcome-navbar></welcome-navbar>
+
+
 <div class="ice-container">
-    <div class="uk-grid-small ice-welcome-container uk-grid-divider" uk-grid>
-        <div class="uk-width-1-3@m">
-            <form class="uk-form-stacked">
+    <div class="informacoes">
+        <table class="uk-table uk-table-middle">
+            <thead>
+            <tr>
+                <th><img class="informacoes-img" src="../img/dinheiro.jpg"/></th>
+                <th><img class="informacoes-img" src="../img/livro.jpg"/></th>
+                <th><img class="informacoes-img" src="../img/ajuda.jpg"/></th>
+            </tr>
+            <tr>
+                <th class="informacoes-titulo">Compartilhe seu conhecimento</th>
+                <th class="informacoes-titulo">Tenha acesso a dezenas de cursos</th>
+                <th class="informacoes-titulo">Obtenha suporte em seus projetos</th>
+            </tr>
 
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="form-login">{{'username' | translate}}</label>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" id="form-login" name="email" type="text" placeholder="{{'username-placeholder' | translate}}">
-                    </div>
-                </div>
+            <tr>
+                <td class="informacoes-desc">Você poderá compartilhar seu conhecimento e ainda receber por isso.</td>
+                <td class="informacoes-desc">Com a plataforma Vedci você terá acesso aos mais variados cursos independente da área desejada.</td>
+                <td class="informacoes-desc">Participe de comunidades e obtenha ajuda em seus projetos  recebendo sugestões, tirando dúvidas e encontrando parceiros de desenvolvimento.</td>
+            </tr>
 
-                <div class="uk-margin">
-                    <label class="uk-form-label" for="form-password">{{'password' | translate}}</label>
-                    <div class="uk-form-controls">
-                        <input class="uk-input" id="form-password" name="password" type="password" placeholder="{{'password-placeholder' | translate}}">
-                    </div>
-                </div>
+            </thead>
+        </table>
+    </div>
 
-                <div class="uk-margin">
-                   <a class="uk-text-bottom" routerLink="/welcome/forgot-password">{{'forgot-password' | translate }}</a>
-                   <input type="button" value="{{'login' | translate}}" (click)="login()" class="uk-button uk-button-primary uk-align-right">
-                </div>
-            </form>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <div style="height: 1050px;">
+        <div id="cards-lista1">
+            <h4 class="card-sessao">Cursos Mais Vendidos:</h4>
+            <table class="uk-table" id="tabela-cards">
+
+                <tr>
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/3dmax.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">3D Studio Max: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/javascript.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">JavaScript para iniciantes</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (82)
+                                    </li>
+
+                                    <li class="card-valor">RS 50,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/bootstrap.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">Bootstrap: Design responsivo</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span> (201)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/culinaria.jpg')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">Culinária: Chocolates e doces</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (155)
+                                    </li>
+
+                                    <li class="card-valor">RS 45,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/guitarra.jpg')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">Violão: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="uk-width-2-3@m">
-            <img class="uk-align-center" src="../../../img/welcome/logo.svg">
-            <div class="uk-grid-small ice-welcome-container" uk-grid>
-                <div class="uk-width-1-3@l">
-                    <strong>{{'connect' | translate}}</strong>
-                    <p>{{'connect-text' | translate}}</p>
-                </div>
-                <div class="uk-width-1-3@l">
-                    <strong>{{'learn' | translate}}</strong>
-                    <p>{{'learn-text' | translate}}</p>
-                </div>
-                <div class="uk-width-1-3@l">
-                    <strong>{{'share' | translate}}</strong>
-                    <p>{{'share-text' | translate}}</p>
-                </div>
-            </div>
 
-            <hr class="uk-divider-icon ice-highlights-margin">
 
-            <div *ngIf="highlights" class="ice-highlights-margin">
-                {{'highlights' | translate}}
-                <div class="uk-grid-small ice-welcome-container" uk-grid>
-                    <div *ngFor="let highlight of highlights" class="uk-width-1-5@s ice-highlights-img">
-                        <img [src]="highlight.image">
-                    </div>
-                </div>
-            </div>
+        <div id="cards-lista2">
+            <h4 class="card-sessao">Cursos Melhores Avaliados:</h4>
+            <table class="uk-table" id="tabela-cards">
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/3dmax.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">3D Studio Max: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/3dmax.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">3D Studio Max: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/3dmax.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">3D Studio Max: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/3dmax.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">3D Studio Max: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td>
+                        <div class="card left-card">
+                            <div class="card-img" style="background-image:url('img/3dmax.png')"></div>
+                            <div class="card-conteudo">
+                                <h3 class="card-titulo">3D Studio Max: Do básico ao avançado</h3>
+                                <ul class="card-info">
+                                    <li>Nome do Laboratório</li>
+
+                                    <li>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star star"></span>
+                                        <span class="fa fa-star"></span> (212)
+                                    </li>
+
+                                    <li class="card-valor">RS 120,00</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
 
         </div>
     </div>
 </div>
+
+
+
+
+<style type="text/css">
+
+/*############ CSS relativo as informações ############*/
+.informacoes {
+    position: absolute;
+    left: 5%;
+    right: 5%;
+}
+.informacoes-img {
+    width: 85px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.informacoes-titulo {
+    text-align: center !important;
+    width: 30%;
+    position: relative;
+    top: -20px;
+    font-weight: bold;
+}
+.informacoes-desc {
+    text-align: center;
+    position: relative;
+    top: -45px;
+}
+
+
+/*############ CSS relativo aos Cards ############*/
+#cards-lista1 {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 350px;
+}
+#cards-lista2 {
+    position: absolute;
+    left: 7%;
+    right: 7%;
+    top: 725px;
+}
+#tabela-cards {
+    position: relative;
+    top: -25px
+}
+.uk-table td {
+    width: 200px;
+}
+.card-sessao {
+    position: relative;
+    font-family: Cambria;
+    color: #888;
+    font-weight: bold;
+    left: 1%;
+
+}
+.card {
+    display: block;
+    min-height: 250px;
+    width: 210px;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 5px;
+    -webkit-transition: box-shadow 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+    transition: box-shadow 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
+}
+.card-img {
+    background-size: 100% 130px;
+    background-repeat: no-repeat;
+    height: 140px;
+}
+.card-conteudo {
+    padding: 8px;
+    height: 125px;
+}
+.card-titulo {
+    font-family: Cambria !important;
+    padding-left: 6px;
+    color: #888;
+    font-weight: bold;
+    font-size: 1.08em;
+}
+.card-info {
+    list-style: none;
+    padding: 0;
+}
+.card-info li {
+    position: relative;
+    padding-left: 6px;
+    color: #888;
+    line-height: 1.6;
+    font-size: 0.8em;
+    font-family: Cambria !important;
+}
+.card-valor {
+    text-align: right;
+    font-size: 0.9em;
+    font-weight:bold;
+}
+.star {
+    color: orange;
+}
+
+</style>
+
+
+
+<footer></footer>

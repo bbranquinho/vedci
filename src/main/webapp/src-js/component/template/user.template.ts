@@ -1,5 +1,4 @@
 import {Component, ViewEncapsulation} from '@angular/core'
-import {UserModel} from "../../model/user.model";
 
 @Component({
     selector: 'template-app',
@@ -12,14 +11,5 @@ import {UserModel} from "../../model/user.model";
     ]
 })
 export class UserTemplate {
-    public user: UserModel;
 
-    constructor(){
-        //Ontem o usuário lagado
-        UserModel.getUser(1).subscribe(
-            json => {
-                this.user = <UserModel>UserModel.fromJson(json);
-            }
-        );
-    }
 }
