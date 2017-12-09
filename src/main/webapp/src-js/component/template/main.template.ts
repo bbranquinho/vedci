@@ -1,6 +1,4 @@
 import {Component, ViewEncapsulation} from '@angular/core'
-import {HttpClient} from "@angular/common/http";
-import {HttpFactory} from "../../factory/http.factory";
 
 @Component({
     selector: 'main-app',

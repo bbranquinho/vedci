@@ -1,108 +1,67 @@
 <div class="ice-container">
-    <div class="ice-welcome-container">
-        <div class="uk-grid-small ice-welcome-container uk-grid-divider" uk-grid>
-            <div class="uk-width-2-3@m">
-                <div class="uk-grid-small ice-welcome-container" uk-grid>
-                    <div class="uk-width-1-2@m">
-                        <form class="uk-form-stacked">
+    <div class="uk-card uk-card-default register-card">
 
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-first-name">{{'first-name' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-first-name" [(ngModel)]="firstName" name="firstName" type="text" placeholder="{{'first-name-placeholder' | translate}}">
-                                </div>
-                            </div>
+        <a routerLink="/welcome/login"><img src="../img/logo.png" id="register-logo" /></a>
+        <form class="uk-grid-small register-grid" uk-grid>
 
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-last-name">{{'last-name' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-last-name" [(ngModel)]="lastName" name="lastName" type="text" placeholder="{{'last-name-placeholder' | translate}}">
-                                </div>
-                            </div>
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-sex">{{'gender' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <select class="uk-input" [(ngModel)]="gender" name="gender" id="form-sex">
-                                        <option value="1">{{"male" | translate}}</option>
-                                        <option value="2">{{"female" | translate}}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="uk-form-label" for="form-email">{{'email' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" [(ngModel)]="email" name="email" id="form-email" type="text" placeholder="{{'email-placeholder' | translate}}">
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-
-                    <div class="uk-width-1-2@m">
-                        <form class="uk-form-stacked">
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-email-confirm">{{'email-confirm' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" [(ngModel)]="emailConfirm" name="emailConfirm" id="form-email-confirm" type="text" placeholder="{{'email-confirm-placeholder' | translate}}">
-                                </div>
-                            </div>
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-birthday">{{'birthday' | translate}}</label>
-                                <div class="uk-form-controls" data-uk-form-select>
-                                    <input type="text" class="uk-input" id="form-birthday" [(ngModel)]="birthday" name="birthday" data-uk-datepicker="{format:'DD.MM.YYYY'}" placeholder="{{'birthday-placeholder' | translate}}">
-                                </div>
-                            </div>
-
-                            <div class="uk-margin">
-                                <label class="uk-form-label" for="form-password">{{'password' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-password" [(ngModel)]="password" name="password" type="password" placeholder="{{'password-placeholder' | translate}}">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="uk-form-label" for="form-password-confirm">{{'password-confirm' | translate}}</label>
-                                <div class="uk-form-controls">
-                                    <input class="uk-input" id="form-password-confirm" [(ngModel)]="passwordConfirm" name="passwordConfirm" type="password" placeholder="{{'password-confirm-placeholder' | translate}}">
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-
-                    <div>
-                        <label><input class="uk-checkbox" type="checkbox"> <a href="" >{{'accept' | translate}}</a></label>
-                    </div>
-
-                    <div class="uk-width-1-1">
-                        <div class="uk-align-right">
-                            <button class="uk-button uk-button-default">{{'clear' | translate}}</button>
-                            <button (click)="register()"  class="uk-button uk-button-primary">{{'register' | translate}}</button>
-                        </div>
-                        <div class="uk-clearfix"></div>
-                    </div>
-
-                </div>
+            <div class="uk-width-1-1@s">
+                <input class="uk-input" type="text" placeholder="Nome">
             </div>
 
-            <div class="uk-width-1-3@m">
-                <ul class="uk-list uk-list-striped">
-                    <li>{{"security-tips.1" | translate}}</li>
-                    <li>{{"security-tips.2" | translate}}</li>
-                    <li>{{"security-tips.3" | translate}}</li>
-                    <li>{{"security-tips.4" | translate}}</li>
-                    <li>{{"security-tips.5" | translate}}</li>
-                    <li>{{"security-tips.6" | translate}}</li>
-                    <li>{{"security-tips.7" | translate}}</li>
-                    <li>{{"security-tips.8" | translate}}</li>
-                    <li>{{"security-tips.9" | translate}}</li>
-                </ul>
+            <div class="uk-width-1-1@s">
+                <input class="uk-input" type="text" placeholder="Email">
             </div>
-        </div>
+
+            <div class="uk-width-1-2@s">
+                <input class="uk-input" type="text" placeholder="Senha">
+            </div>
+
+            <div class="uk-width-1-2@s">
+                <input class="uk-input " type="text" placeholder="Confirme a senha">
+            </div>
+
+            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                <label><input class="uk-checkbox" type="checkbox" checked> Concordo com os <a href=""> Termos e Condições</a> e <a href="">Politicas de Privacidade</a></label>
+            </div>
+
+            <button class="uk-button uk-button-primary uk-width-1-1 register-btn">Cadastrar</button>
+
+        </form>
     </div>
+
 </div>
+
+
+<style type="text/css">
+
+.register-card{
+top: 60px;
+width: 550px;
+height: 470px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+
+#register-logo{
+position: relative;
+top: 25px;
+width: 160px;
+display: block;
+margin-left: auto;
+margin-right: auto;
+}
+.register-grid{
+position: relative;
+top: 70px;
+width: 450px;
+margin-left: auto;
+margin-right: auto;
+}
+.register-btn{
+position: relative;
+top: 15px;
+left: 14px;
+width: 97%
+}
+</style>

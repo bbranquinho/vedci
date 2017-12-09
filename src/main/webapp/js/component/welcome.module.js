@@ -5,6 +5,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
@@ -17,28 +20,34 @@ var register_component_1 = require("./welcome/register.component");
 var forgot_password_component_1 = require("./welcome/forgot-password.component");
 var translate_loader_factory_1 = require("../factory/translate-loader.factory");
 var register_confirmation_component_1 = require("./welcome/register-confirmation.component");
+var common_1 = require("@angular/common");
 var footer_module_1 = require("./footer.module");
-var forms_1 = require("@angular/forms");
-var logout_component_1 = require("./welcome/logout.component");
-var language_module_1 = require("./language.module");
+var welcome_navbar_module_1 = require("./welcome-navbar.module");
+var instruct_component_1 = require("./welcome/instruct.component");
+var search_component_1 = require("./welcome/search.component");
 var WelcomeModule = /** @class */ (function () {
-    function WelcomeModule() {
+    function WelcomeModule(translate) {
+        // this language will be used as a fallback when a translation isn't found in the current language
+        translate.setDefaultLang('pt-br');
+        // the lang to use, if the lang isn't available, it will use the current loader to get them
+        translate.use('pt-br');
     }
     WelcomeModule = __decorate([
         core_1.NgModule({
             imports: [
+                common_1.CommonModule,
                 http_1.HttpClientModule,
                 footer_module_1.FooterModule,
-                forms_1.FormsModule,
-                language_module_1.LanguageModule,
+                welcome_navbar_module_1.WelcomeNavbarModule,
                 router_1.RouterModule.forChild(welcome_routes_1.WelcomeRoutes),
-                core_2.TranslateModule.forChild({
+                core_2.TranslateModule.forRoot({
                     loader: {
                         provide: core_2.TranslateLoader,
-                        useFactory: function () { return new translate_loader_factory_1.TranslateLoaderFactory([
+                        useFactory: function (http) { return new translate_loader_factory_1.TranslateLoaderFactory(http, [
                             './translate/welcome/',
                             './translate/general/footer/'
-                        ], '.json'); }
+                        ], '.json'); },
+                        deps: [http_1.HttpClient]
                     },
                     isolate: true
                 })
@@ -47,11 +56,13 @@ var WelcomeModule = /** @class */ (function () {
                 welcome_template_1.WelcomeTemplate,
                 login_component_1.LoginComponent,
                 forgot_password_component_1.ForgotPasswordComponent,
+                instruct_component_1.InstructComponent,
                 register_confirmation_component_1.RegisterConfirmationComponent,
                 register_component_1.RegisterComponent,
-                logout_component_1.LogoutComponent
+                search_component_1.SearchComponent,
             ],
-        })
+        }),
+        __metadata("design:paramtypes", [core_2.TranslateService])
     ], WelcomeModule);
     return WelcomeModule;
 }());

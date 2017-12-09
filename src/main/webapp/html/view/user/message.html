@@ -1,61 +1,52 @@
-<div class="ice-user-header-mobile" *ngIf="user">
-    <div class="uk-grid-small uk-flex-middle" uk-grid>
-        <div class="uk-width-auto">
-            <img [src]="user.image">
-        </div>
-        <div class="uk-width-expand">
-            <h3 class="uk-card-title uk-margin-remove-bottom">{{user.getFullName()}}</h3>
-            <p class="uk-text-meta uk-margin-remove-top">Sinta se avontade de compartilhar suas ideias comigo</p>
-        </div>
+<div class="uk-text-center uk-hidden@m">
+    <div class="ice-user-profile-img uk-overlay-hover uk-border-circle">
+        <figure class="ice-profile-overlay">
+            <img class="uk-border-circle" src=".././../../img/tmp/user-250/1.jpg" alt="">
+            <figcaption class="uk-overlay-panel uk-overlay-background uk-flex uk-flex-center uk-flex-middle uk-text-center uk-border-circle">
+                <div>
+                    <a href="#" uk-icon="icon: push" class="uk-icon-button"></a>
+                </div>
+            </figcaption>
+        </figure>
     </div>
+    <p class="uk-text-uppercase uk-margin-top-remove uk-text-muted">ISMAEL FAGUNDES DA SILVA</p>
 </div>
+
+
+
+
 
 
 <div [froalaEditor]="froalaMainOptions" [(froalaModel)]="froalaMessage"></div>
 
 <div class="uk-width-1-1 uk-margin-small-top">
-    <label><input class="uk-checkbox" [(ngModel)]="isPrivate" type="checkbox"> {{'message-private' | translate}}</label>
+    <label><input class="uk-checkbox" type="checkbox"> {{'message-private' | translate}}</label>
     <div class="uk-align-right">
-        <button (click)="postMessage(user, froalaMessage, isPrivate)" class="uk-button uk-button-primary">{{'send' | translate}}</button>
+        <button (click)="teste()" class="uk-button uk-button-primary">{{'send' | translate}}</button>
     </div>
     <div class="uk-clearfix"></div>
 </div>
 
-<hr class="uk-divider-icon">
-
-
-<article class="uk-comment uk-margin-medium-bottom" *ngFor="let message of messages; let idx = index">
+<article class="uk-comment uk-margin-medium-bottom" *ngFor="let message of messages">
     <header class="uk-comment-header uk-grid-medium uk-flex-middle" uk-grid>
         <div class="uk-width-auto">
-            <img class="uk-comment-avatar ice-user-message-img" [src]="message.from.image" alt="">
+            <img class="uk-comment-avatar ice-user-message-img" [src]="message.image" width="80" height="80" alt="">
         </div>
         <div class="uk-width-expand">
-            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.from.getFullName()}}</a></h4>
+            <h4 class="uk-comment-title uk-margin-remove"><a class="uk-link-reset" href="#">{{message.author}}</a></h4>
             <div class="uk-width-1-1">
                 <div class="uk-align-left ice-no-margin-bottom">
-                    <span>{{getTimeAgo(message)}}</span>
-                    <span class="uk-text-small">({{message.date | date:getDateFormat()}})</span>
+                    12 days ago
                 </div>
                 <div class="uk-align-right ice-no-margin-bottom">
-                    <i class="fa fa-reply ice-i" (click)="showReply(message)" aria-hidden="true"></i>
-                    <i class="fa fa-trash ice-i" (click)="deleteMessage(message, idx)" aria-hidden="true"></i>
+                    <i class="fa fa-reply ice-i" aria-hidden="true"></i>
+                    <i class="fa fa-trash ice-i" aria-hidden="true"></i>
                 </div>
                 <div class="uk-clearfix"></div>
             </div>
         </div>
     </header>
     <div class="uk-comment-body" [innerHTML]="message.message | message | safeHtml"></div>
-
-    <div *ngIf="message.auxReplayActive">
-        <div [froalaEditor]="froalaMainOptions" [(froalaModel)]="message.auxReply"></div>
-        <div class="uk-width-1-1 uk-margin-small-top">
-            <label><input class="uk-checkbox" [(ngModel)]="message.auxIsPrivate" type="checkbox"> {{'message-private' | translate}}</label>
-            <div class="uk-align-right">
-                <button (click)="postMessageReply(message)" class="uk-button uk-button-primary">{{'send' | translate}}</button>
-            </div>
-        </div>
-    </div>
-
     <hr>
 </article>
 <div class="uk-text-center"><i class="fa fa-angle-double-down" aria-hidden="true"></i> CARREGAR MAIS <i class="fa fa-angle-double-down" aria-hidden="true"></i></div>

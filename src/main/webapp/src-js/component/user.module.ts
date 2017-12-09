@@ -1,6 +1,8 @@
 import { NgModule  } from '@angular/core';
+import {CommonModule} from "@angular/common";
 import { RouterModule } from "@angular/router";
-import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {TranslateModule, TranslateLoader, TranslateService} from '@ngx-translate/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import {TranslateLoaderFactory} from "../factory/translate-loader.factory";
 import { FroalaEditorModule, FroalaViewModule } from 'angular2-froala-wysiwyg';
 
@@ -13,30 +15,28 @@ import {MessageComponent} from "./user/message.component";
 import {MessagePipe} from "../pipe/message.pipe";
 import {SafeHtmlPipe} from "../pipe/safe-html.pipe";
 import {UserMenuComponent} from "./general/user-menu.component";
-import {FormsModule} from "@angular/forms";
-import {LanguageModule} from "./language.module";
 
 
 @NgModule({
     imports: [
+        CommonModule,
+        HttpClientModule,
         FroalaEditorModule,
         FroalaViewModule,
         FooterModule,
-        FormsModule,
-        LanguageModule,
         RouterModule.forChild(UserRoutes),
-        TranslateModule.forChild({
+        TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
-                useFactory:() => new TranslateLoaderFactory(
+                useFactory: (http: HttpClient) => new TranslateLoaderFactory(http,
                     [
                         './translate/user/',
                         './translate/general/footer/'
-                    ], '.json')
+                    ], '.json'),
+                deps: [HttpClient]
             },
             isolate: true
         })
-
     ],
     declarations: [
         UserTemplate,
@@ -50,4 +50,11 @@ import {LanguageModule} from "./language.module";
 
 
 export class UserModule {
+    constructor(translate: TranslateService) {
+        // this language will be used as a fallback when a translation isn't found in the current language
+        translate.setDefaultLang('pt-br');
+
+        // the lang to use, if the lang isn't available, it will use the current loader to get them
+        translate.use('pt-br');
+    }
 }

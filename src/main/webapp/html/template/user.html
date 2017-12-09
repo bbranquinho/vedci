@@ -1,27 +1,78 @@
 <nav class="ice-welcome-nav">
 
-    <div class="ice-container">
-        <div class="uk-align-left ice-no-margin-bottom">
-            <img src="../../img/welcome/pwdicefenix.png" class="uk-visible@m">
-            <a uk-toggle="target: #offcanvas-menu-user" href="" uk-icon="icon: menu; ratio: 1" class="ice-menu-mobile uk-navbar-toggle uk-hidden@m uk-navbar-toggle-icon uk-icon"></a>
+    <nav class="uk-navbar-container uk-margin" uk-navbar id="navbar" >
+        <div class="uk-navbar-left">
+            <a routerLink="/welcome/login"><img src="../img/logo.png" id="logoNavbar"/></a>
+
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a href="#">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: list"></span>
+                        Categoria
+                    </a>
+                    <div class="uk-navbar-dropdown" id="dropdown-categorias">
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">Active</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+
+            <div class="uk-navbar-item">
+                <form action="javascript:void(0)">
+                    <div class="uk-inline">
+                        <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
+                        <input class="uk-input uk-width-large uk-margin"  type="text" placeholder="Pesquisar Cursos" id="form-pesquisa">
+                    </div>
+                </form>
+            </div>
+
+
+            <button class="uk-button uk-button-default" id="btn-laboratorios">Laboratórios
+            </button>
+            <button class="uk-button uk-button-default" id="btn-cursos">Cursos
+            </button>
         </div>
 
-        <button routerLink="/welcome/register" class="uk-button uk-button-primary uk-align-right ice-no-margin-bottom">{{'register' | translate}}</button>
-    </div>
+        <div class="uk-navbar-right">
+
+            <a href="#" id="icon-alert">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  bell"></span>
+            </a>
+            <a href="#" id="icon-mail">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  mail"></span>
+            </a>
+            <a href="#" id="icon-config">
+                <span class="uk-icon uk-margin-small-right" uk-icon="icon:  cog"></span>
+            </a>
+        </div>
+    </nav>
 
     <div class="uk-clearfix"></div>
 </nav>
 
 
+
 <div class="ice-main">
     <div class="ice-container">
+
         <div class="uk-grid-small ice-welcome-container uk-grid-divider" uk-grid>
+
 
             <div class="ice-profile-menu uk-width-1-5@m">
 
                 <!-- Início do menu desktop -->
                 <div class="uk-visible@m">
-                    <user-menu [userLogged]="user"></user-menu>
+                    <user-menu></user-menu>
                 </div>
                 <!-- Fim do menu desktop -->
 
@@ -30,12 +81,13 @@
                     <div class="uk-offcanvas-bar">
 
                         <button class="uk-offcanvas-close" type="button" uk-close></button>
-                        <user-menu [userLogged]="user"></user-menu>
+                        <user-menu></user-menu>
 
                     </div>
                 </div>
                 <!-- Fim do menu Mobile -->
             </div>
+
 
             <div class="uk-width-4-5@m">
                 <router-outlet></router-outlet>
