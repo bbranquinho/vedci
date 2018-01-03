@@ -7,7 +7,7 @@ import {NotificationService} from "../../service/notification.service";
 import {stat} from "fs";
 
 @Component({
-    templateUrl: '../../../html/view/welcome/register.html'
+    templateUrl: 'html/view/welcome/register.html'
 })
 export class RegisterComponent{
     private _router: Router;

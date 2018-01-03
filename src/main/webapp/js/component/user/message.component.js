@@ -11,9 +11,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 require("node_modules/froala-editor/js/froala_editor.pkgd.min.js");
 var core_1 = require("@angular/core");
-var message_pipe_1 = require("../../pipe/message.pipe");
+var user_message_model_1 = require("../../model/user-message.model");
+var router_1 = require("@angular/router");
+var auth_guard_service_1 = require("../../service/auth-guard.service");
+var user_model_1 = require("../../model/user.model");
+var core_2 = require("@ngx-translate/core");
+var notification_service_1 = require("../../service/notification.service");
 var MessageComponent = /** @class */ (function () {
-    function MessageComponent() {
+    /**
+     * Construtor padrão da classe
+     *
+     * @param {Router} router
+     * @param {ActivatedRoute} activatedRoute
+     * @param {TranslateService} translate
+     */
+    function MessageComponent(router, activatedRoute, translate) {
         this.froalaMainOptions = {
             charCounterCount: true,
             enter: $.FroalaEditor.ENTER_BR,
@@ -82,55 +94,136 @@ var MessageComponent = /** @class */ (function () {
                 { code: '1f637', desc: 'Face with medical mask' }
             ]
         };
-        this.messages = [
-            {
-                "id": "9999",
-                "author": "Maria Luka",
-                "message": "Se soubéssemos o que era aquilo que estávamos fazendo, não seria chamado de pesquisa.",
-                "image": "../../../img/tmp/user-80/1.jpg",
-                "to": "123332",
-                "from": "1023112"
-            },
-            {
-                "id": "992",
-                "author": "Erica Matos Silva",
-                "message": "Chuck Norris não segue tendências. As tendências seguem Chuck Norris. Aí então, as tendências acabam. Afinal, ninguém segue Chuck Norris impunemente.",
-                "image": "../../../img/tmp/user-80/2.jpg",
-                "to": "123332",
-                "from": "1056112"
-            },
-            {
-                "id": "991",
-                "author": "Charlie",
-                "message": "Olá tudo bem?",
-                "image": "../../../img/tmp/user-80/3.jpg",
-                "to": "123332",
-                "from": "105652"
-            },
-            {
-                "id": "991",
-                "author": "Charlie",
-                "message": "[b]Negrito[/b]<br>[i]Italico[/i]<br>[u]Sublinhado[/u]<br>[a http://google.com]Teste[/a] [a http://google.com.br]Teste2[/a][emoji]1f60c[/emoji]",
-                "image": "../../../img/tmp/user-80/4.jpg",
-                "to": "123332",
-                "from": "105652"
-            }
-        ];
+        this._router = router;
+        this._activatedRoute = activatedRoute;
+        this._translate = translate;
     }
-    MessageComponent.prototype.teste = function () {
-        this.messages.unshift({
-            "id": "991",
-            "author": "Mila de Milos",
-            "message": message_pipe_1.MessagePipe.encodeMessage(this.froalaMessage),
-            "image": "../../../img/tmp/user-250/1.jpg",
-            "to": "123332",
-            "from": "105652"
+    /**
+     * Inicia as configurações
+     */
+    MessageComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        //Obtem o token caso esteja na url
+        this._activatedRoute.params.subscribe(function (params) {
+            var userId = params['user'] || auth_guard_service_1.AuthGuardService.user.id;
+            //Obtem os dados do usuário
+            user_model_1.UserModel.getUser(userId).subscribe(function (user) {
+                _this.user = user;
+            });
+            //Obtem as mensagens
+            user_message_model_1.UserMessageModel.getMessages(userId, 0, 30).subscribe(function (messages) {
+                _this.messages = messages;
+            });
         });
-        this.froalaMessage = "";
+    };
+    /**
+     * Posta uma mensagem
+     *
+     * @param {UserModel} user
+     * @param {string} message
+     * @param {boolean} isPrivate
+     */
+    MessageComponent.prototype.postMessage = function (user, message, isPrivate) {
+        var _this = this;
+        //Faz a postagem da mensagem
+        user_message_model_1.UserMessageModel.post(user, message, isPrivate).subscribe(function (message) {
+            _this.messages.unshift(message);
+        });
+    };
+    /**
+     *  Mostra e oculta a exibição de respostas
+     *
+     * @param {UserMessageModel} message
+     */
+    MessageComponent.prototype.showReply = function (message) {
+        if (message.auxReplayActive) {
+            message.auxReplayActive = false;
+        }
+        else {
+            message.auxReplayActive = true;
+            message.auxReply = '';
+            message.auxIsPrivate = message.isPrivate;
+        }
+    };
+    /**
+     * Posta uma mensagem em reposta
+     *
+     * @param {UserMessageModel} message
+     */
+    MessageComponent.prototype.postMessageReply = function (message) {
+        var _this = this;
+        user_message_model_1.UserMessageModel.post(message.from, message.auxReply, message.auxIsPrivate).subscribe(function (resultMessage) {
+            if (resultMessage.id) {
+                notification_service_1.NotificationService.success(_this._translate.instant('message-post-success'));
+                message.auxReplayActive = false;
+            }
+        });
+    };
+    /**
+     * Obtem a informação de há quanto tempo a mensagem foi postada
+     *
+     * @param {UserMessageModel} message
+     * @returns {string}
+     */
+    MessageComponent.prototype.getTimeAgo = function (message) {
+        var diff = message.getSecondsAgo();
+        var time;
+        var return_message;
+        switch (true) {
+            case (diff < 1):
+                return_message = this._translate.instant('time-ago.second');
+                break;
+            case (diff < 60):
+                time = diff;
+                return_message = this._translate.instant('time-ago.seconds', { "time": time });
+                break;
+            case (diff >= 60 && diff < 120):
+                return_message = this._translate.instant('time-ago.minute');
+                break;
+            case (diff >= 120 && diff < 3600):
+                time = parseInt((diff / 60).toString(), 10);
+                return_message = this._translate.instant('time-ago.minutes', { "time": time });
+                break;
+            case (diff >= 3600 && diff < 7200):
+                return_message = this._translate.instant('time-ago.hour');
+                break;
+            case (diff >= 7200 && diff < 86400):
+                time = parseInt((diff / 60 / 60).toString(), 10);
+                return_message = this._translate.instant('time-ago.hours', { "time": time });
+                break;
+            case (diff >= 86400 && diff < 172800):
+                return_message = this._translate.instant('time-ago.day');
+                break;
+            case (diff >= 172800):
+                time = parseInt((diff / 60 / 60 / 24).toString(), 10);
+                return_message = this._translate.instant('time-ago.days', { "time": time });
+                break;
+        }
+        return return_message;
+    };
+    /**
+     * Obtem o formato da data
+     *
+     * @returns {string}
+     */
+    MessageComponent.prototype.getDateFormat = function () {
+        return this._translate.instant("date-format.short");
+    };
+    /**
+     * Deleta messagem
+     *
+     * @param {UserMessageModel} message
+     * @param {number} index
+     */
+    MessageComponent.prototype.deleteMessage = function (message, index) {
+        var _this = this;
+        message.delete().subscribe(function (message) {
+            _this.messages.splice(index, 1);
+        });
     };
     MessageComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/user/message.html',
+            templateUrl: 'html/view/user/message.html',
             styleUrls: [
                 "node_modules/froala-editor/css/froala_editor.pkgd.min.css",
                 "node_modules/froala-editor/css/froala_style.min.css",
@@ -138,7 +231,7 @@ var MessageComponent = /** @class */ (function () {
             ],
             encapsulation: core_1.ViewEncapsulation.None,
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, core_2.TranslateService])
     ], MessageComponent);
     return MessageComponent;
 }());

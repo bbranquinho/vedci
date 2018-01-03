@@ -33,3 +33,4 @@ target/
 
 node_modules/
 /bin/
+src/main/webapp/js/

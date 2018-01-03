@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="Kamikaze">
+		<createTable tableName="tb_highlight">
+			<column name="highlight_id" type="BIGINT">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="lab_id" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="best_seller" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="2" author="Kamikaze">
+		<addForeignKeyConstraint 
+			baseColumnNames="lab_id"
+            baseTableName="tb_highlight"
+            constraintName="fk_highlight_lab"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="lab_id"
+            referencedTableName="tb_lab"/>
+	</changeSet>
+
+	<changeSet id="3" author="Kamikaze">
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="1" />
+			<column name="lab_id" value="2" />
+			<column name="best_seller" value="true" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="2" />
+			<column name="lab_id" value="3" />
+			<column name="best_seller" value="true" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="3" />
+			<column name="lab_id" value="4" />
+			<column name="best_seller" value="true" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="4" />
+			<column name="lab_id" value="5" />
+			<column name="best_seller" value="true" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="5" />
+			<column name="lab_id" value="6" />
+			<column name="best_seller" value="true" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="6" />
+			<column name="lab_id" value="7" />
+			<column name="best_seller" value="false" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="7" />
+			<column name="lab_id" value="8" />
+			<column name="best_seller" value="false" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="8" />
+			<column name="lab_id" value="9" />
+			<column name="best_seller" value="false" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="9" />
+			<column name="lab_id" value="10" />
+			<column name="best_seller" value="false" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="10" />
+			<column name="lab_id" value="11" />
+			<column name="best_seller" value="false" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="11" />
+			<column name="lab_id" value="12" />
+			<column name="best_seller" value="false" />
+		</insert>
+		
+		<insert tableName="tb_highlight">
+			<column name="highlight_id" value="12" />
+			<column name="lab_id" value="13" />
+			<column name="best_seller" value="true" />
+		</insert>
+		
+	</changeSet>
+
+</databaseChangeLog>

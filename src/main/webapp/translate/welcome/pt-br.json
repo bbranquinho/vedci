@@ -1,4 +1,33 @@
 {
+  "connect": "Obtenha suporte em seus projetos",
+  "connect-text": "Participe de comunidades e obtenha ajuda em seus projetos  recebendo sugestões, tirando dúvidas e encontrando parceiros de desenvolvimento",
+  "learn": "Tenha acesso a dezenas de cursos",
+  "learn-text": "Com a plataforma Vedci você terá acesso aos mais variados cursos independente da área desejada.",
+  "share": "Compartilhe seu conhecimento",
+  "share-text": "Você poderá compartilhar seu conhecimento e ainda receber por isso.",
+  "best-seller": "Mais vendidos",
+  "best-raking": "Melhores Avaliados:",
+  "price": "R$ {{price}}",
+  "money": "Ganhe enquanto ensina",
+  "money-text": "Você pode ensinar os mais variados conteúdos e ganhar dinheiro sempre que alguem comprar seu curso, apoiar seu laboratório ou criar atividades pagas.",
+  "instruct": "Ensine do seu jeito",
+  "instruct-text": "Você pode escolher o método que mais lhe agrada para ensinar, você pode usar videos, imagens e textos e ainda personalizar o seu ambiente de ensino.",
+  "custom": "Personalize seu laboratório",
+  "custom-text": "Deixe seu laboratório com a sua cara, você terá a opção de modificar a interface e deixar como preferir.",
+  "instruct-start": "Veja como iniciar:",
+  "instruct-theme": "Escolha um Tema:",
+  "instruct-theme-text": "Conhece muito sobre um assunto? defina um tema e crie seu laboratório, seu conhecimento poderá alcançar milhares de pessoas e ajudá-las em suas jornadas. Interaja com sua comunidade, sua participação é importante e pode fazer com que seus lucros cresçam caso seus alunos criem perguntas ou atividades pagas.",
+  "instruct-lab": "Personalize seu Laboratório",
+  "instruct-lab-text": "Deixe seu laboratório com a sua cara, você terá a opção de modificar a interface e deixar como preferir. O nosso site permite que vc personalize seu laboratório inserindo seu próprio CSS. Personalize-o de acordo com seu tema e com suas preferências, isso tornará o processo de aprendizado dos seus alunos algo muito mais agradável.",
+  "instruct-shared": "Poste e compartilhe seu Conteúdo",
+  "instruct-shared-text": "Escolha a melhor forma de postar seu conteúdo, utilizando videos, imagens, textos ou todos eles! Voce tem a liberdade de definir a forma mais eficiente de se comunicar com seus alunos. Divulgue seu conteúdo para familiares e amigos e ajude-nos a almentar o alcance do seu conteúdo.",
+
+
+
+
+
+
+
   "register": "Registrar",
   "login": "Entrar",
   "username": "Usuário",
@@ -6,12 +35,7 @@
   "password": "Senha",
   "password-placeholder": "Informe sua senha",
   "forgot-password": "Esqueceu sua senha?",
-  "connect": "Conecte",
-  "connect-text": "com diversas pessoas e páginas com conteúdos incríveis.",
-  "learn": "Aprenda",
-  "learn-text": "de uma forma divertida e descomplicada.",
-  "share": "Compartilhe",
-  "share-text": "seus conhecimentos com todos na rede.",
+
   "highlights": "Alguns de nossos destaques.",
   "first-name": "Nome",
   "first-name-placeholder": "Informe seu nome",

@@ -14,11 +14,11 @@ var UserTemplate = /** @class */ (function () {
         core_1.Component({
             selector: 'template-app',
             encapsulation: core_1.ViewEncapsulation.None,
-            templateUrl: '../../../html/template/user.html',
+            templateUrl: 'html/template/user.html',
             styleUrls: [
-                '../../../css/template/general.min.css',
-                '../../../css/template/welcome.min.css',
-                '../../../css/template/user.min.css'
+                'css/template/general.min.css',
+                'css/template/welcome.min.css',
+                'css/template/user.min.css'
             ]
         })
     ], UserTemplate);

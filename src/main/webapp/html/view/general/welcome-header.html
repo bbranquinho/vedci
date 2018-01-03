@@ -1,0 +1,134 @@
+<nav class="ice-welcome-nav" uk-navbar>
+
+    <div class="uk-grid-small uk-width-1-1" uk-grid>
+
+        <div class="logo uk-width-auto">
+            <a routerLink="/welcome"><img src="img/logo.png" class="ice-welcome-nav-logo"/></a>
+        </div>
+
+        <div class="category uk-width-auto uk-visible@m">
+            <ul class="uk-navbar-nav">
+                <li>
+                    <a class="ice-welcome-nav-link" href="javascript:void(0)">
+                        <span class="uk-icon uk-margin-small-right" uk-icon="icon: list"></span>
+                        {{"welcome-header.category" | translate}}
+                    </a>
+                    <div class="uk-navbar-dropdown" >
+                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                            <li class="uk-active"><a href="#">{{"welcome-header.active" | translate}}</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                            <li><a href="#">Item</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="search uk-width-expand">
+            <div class="uk-inline uk-width-1-1">
+                <span class="uk-form-icon uk-form-icon-flip" uk-icon="icon: search"></span>
+                <input class="uk-input ice-welcome-nav-search" type="text" placeholder="{{'welcome-header.search' | translate}}">
+            </div>
+        </div>
+
+        <div class="search uk-width-auto uk-visible@s">
+            <button routerLink="/welcome/instruct" class="uk-button uk-button-default">{{'welcome-header.instruct' | translate}}</button>
+        </div>
+
+        <div class="action-desktop uk-width-1-3 uk-visible@m">
+            <div class="uk-align-right">
+
+                <div class="uk-inline">
+                    <div class="uk-inline">
+                        <button class="uk-button uk-button-default ice-welcome-nav-btn-login" type="button">{{'welcome-header.login' | translate}}</button>
+
+                        <div uk-dropdown="mode: click; pos: bottom-right">
+                            <ul class="uk-nav uk-dropdown-nav logar-dropdown">
+                                <li>
+                                    <input class="uk-input uk-width-medium uk-margin" [(ngModel)]="email" type="text" placeholder="{{'welcome-header.email' | translate}}" name="email">
+                                </li>
+                                <li>
+                                    <input class="uk-input uk-width-medium uk-margin" [(ngModel)]="password" type="password" placeholder="{{'welcome-header.password' | translate}}" name="password">
+                                </li>
+                                <li>
+                                    <a class="uk-float-left" routerLink="/welcome/forgot-password">{{"welcome-header.forgot-password" | translate}}</a>
+                                    <button class="uk-align-right uk-button uk-button-default ice-no-margin-bottom" (click)="login()" type="button">{{'welcome-header.login' | translate}}</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <button routerLink="/welcome/register" class="uk-button uk-button-default">{{'welcome-header.register' | translate}}</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-mobile uk-width-1-3 uk-hidden@m">
+            <div class="uk-align-right">
+
+                <div class="uk-inline ">
+
+                    <i class="boundary fa fa-sign-in fa-2x" aria-hidden="true"></i>
+
+                    <div uk-dropdown="mode: click; boundary: .boundary; pos: bottom-right ">
+                        <ul class="uk-nav uk-dropdown-nav uk-width-1-1@s">
+                            <li>
+                                <input class="uk-input uk-width-1-1 uk-margin" [(ngModel)]="email" type="text" placeholder="{{'welcome-header.email' | translate}}" name="email">
+                            </li>
+                            <li>
+                                <input class="uk-input uk-width-1-1 uk-margin" [(ngModel)]="password" type="password" placeholder="{{'welcome-header.password' | translate}}" name="password">
+                            </li>
+                            <li>
+                                <a class="uk-float-left" routerLink="/welcome/forgot-password">{{"welcome-header.forgot-password" | translate}}</a>
+                                <button class="uk-align-right uk-button uk-button-default ice-no-margin-bottom" (click)="login()" type="button">{{'welcome-header.login' | translate}}</button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <i uk-toggle="target: #offcanvas-header-menu-overlay" class="fa fa-bars fa-2x" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- INICIO MENU MOBILE -->
+        <div class="uk-offcanvas-content uk-position-absolute">
+            <div id="offcanvas-header-menu-overlay" uk-offcanvas="overlay: true; flip: true">
+                <div class="uk-offcanvas-bar">
+
+                    <button class="uk-offcanvas-close" type="button" uk-close></button>
+
+
+                    <ul class="uk-nav-default uk-nav-parent-icon ice-welcome-nav-menu-mobile" uk-nav>
+                        <li class="uk-nav-header">{{"welcome-header.menu" | translate}}</li>
+                        <li><a class="uk-offcanvas-close uk-hidde@s" routerLink="/welcome/instruct"><i class="fa fa-graduation-cap uk-margin-small-right" aria-hidden="true"></i> {{'welcome-header.instruct' | translate}}</a></li>
+                        <li><a class="uk-offcanvas-close" routerLink="/welcome/register"><i class="fa fa-user-plus uk-margin-small-right" aria-hidden="true"></i> {{'welcome-header.register' | translate}}</a></li>
+                        <li class="uk-nav-divider"></li>
+
+                        <li class="uk-parent">
+                            <a href="javascript:void(0)"><i class="fa fa-list uk-margin-small-right" aria-hidden="true"></i> {{"welcome-header.category" | translate}}</a>
+                            <ul class="uk-nav-sub">
+                                <li><a href="#">Sub item</a></li>
+                                <li><a href="#">Sub item</a></li>
+                                <li><a href="#">Sub item</a></li>
+                                <li><a href="#">Sub item</a></li>
+                                <li><a href="#">Sub item</a></li>
+                                <li><a href="#">Sub item</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <!-- FIM MENU MOBILE -->
+
+    </div>
+</nav>
+

@@ -6,14 +6,6 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <include file="liquibase/config/changelog/00000000000000_initial_schema.xml" />
-    <include file="liquibase/config/changelog/20170908214000_permission.xml" />
-    <include file="liquibase/config/changelog/20170908214001_user.xml" />
-    <include file="liquibase/config/changelog/20170908214002_user_permission.xml" />
-    
-    <include file="liquibase/config/changelog/20170908214003_user_permission.xml" />
-    <include file="liquibase/config/changelog/20170908214002_user.xml" /> 
-    <include file="liquibase/config/changelog/20170908214001_permission.xml" />
-
     
     <!-- INÍCIO tb_user_gender -->
     <include file="liquibase/config/changelog/tb_user_gender/2017-11-25_00000.xml"/>
@@ -31,4 +23,16 @@
     <include file="liquibase/config/changelog/tb_user/2017-11-25_00000.xml" />
     <!-- FIM tb_user -->
     
+    <!-- INÍCIO tb_lab_status -->
+    <include file="liquibase/config/changelog/tb_lab_status/2017-12-10_00000.xml" />
+    <!-- FIM tb_lab_status -->
+    
+    <!-- INÍCIO tb_lab -->
+    <include file="liquibase/config/changelog/tb_lab/2017-12-10_00000.xml" />
+    <!-- FIM tb_lab -->
+    
+    <!-- INÍCIO tb_highlight -->
+    <include file="liquibase/config/changelog/tb_highlight/2017-12-10_00000.xml" />
+    <!-- FIM tb_highlight -->
+ 
 </databaseChangeLog>

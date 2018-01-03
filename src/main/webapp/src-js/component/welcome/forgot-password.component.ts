@@ -6,7 +6,7 @@ import {TranslateService} from "@ngx-translate/core";
 import {AuthGuardService} from "../../service/auth-guard.service";
 
 @Component({
-    templateUrl: '../../../html/view/welcome/forgot-password.html'
+    templateUrl: 'html/view/welcome/forgot-password.html'
 })
 export class ForgotPasswordComponent implements OnInit{
     private _router: Router;

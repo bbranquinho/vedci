@@ -12,7 +12,10 @@ var InstructComponent = /** @class */ (function () {
     }
     InstructComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/welcome/instruct.html'
+            templateUrl: 'html/view/welcome/instruct.html',
+            styleUrls: [
+                'css/view/welcome/instruct.min.css'
+            ]
         })
     ], InstructComponent);
     return InstructComponent;

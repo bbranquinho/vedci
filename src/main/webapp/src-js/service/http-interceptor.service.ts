@@ -33,6 +33,10 @@ export class HttpInterceptorService implements HttpInterceptor {
     constructor(authService: AuthGuardService, translate: TranslateService){
         this._authService = authService;
         this._translate = translate;
+
+
+        //TODO remover isto depois
+        this._baseUrl = "http://"+window.location.hostname+":8080/api/"
     }
 
     /**

@@ -1,10 +1,10 @@
 import { Routes } from "@angular/router";
-import { LoginComponent } from "./login.component";
 import { RegisterComponent } from "./register.component";
 import {ForgotPasswordComponent} from "./forgot-password.component";
 import {RegisterConfirmationComponent} from "./register-confirmation.component";
 import {WelcomeTemplate} from "../template/welcome.template";
 import {InstructComponent} from "./instruct.component";
+import {HomeComponent} from "./home.component";
 
 
 export const WelcomeRoutes: Routes = [
@@ -14,8 +14,8 @@ export const WelcomeRoutes: Routes = [
 
     { path: '', component: WelcomeTemplate,
         children:[
-            { path: '', component: LoginComponent },
-            { path: 'login', component: LoginComponent },
+            { path: '', component: HomeComponent },
+            { path: 'home', component: HomeComponent },
             { path: 'register', component: RegisterComponent },
             { path: 'forgot-password', component: ForgotPasswordComponent },
             { path: 'register-confirmation', component: RegisterConfirmationComponent },

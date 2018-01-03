@@ -14,10 +14,10 @@ var WelcomeTemplate = /** @class */ (function () {
         core_1.Component({
             selector: 'template-app',
             encapsulation: core_1.ViewEncapsulation.None,
-            templateUrl: '../../../html/template/welcome.html',
+            templateUrl: 'html/template/welcome.html',
             styleUrls: [
-                '../../../css/template/general.min.css',
-                '../../../css/template/welcome.min.css'
+                'css/template/general.min.css',
+                'css/template/welcome.min.css'
             ]
         })
     ], WelcomeTemplate);

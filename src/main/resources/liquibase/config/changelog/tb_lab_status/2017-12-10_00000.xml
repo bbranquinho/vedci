@@ -5,29 +5,31 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
-	<changeSet id="1" author="caio">
-		<createTable tableName="tb_user">
-			<column name="pk_id" type="bigint(20)" autoIncrement="true">
+	<changeSet id="1" author="Kamikaze">
+		<createTable tableName="tb_lab_status">
+			<column name="lab_status_id" type="BIGINT(20)" autoIncrement="true" startWith="3">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
-			<column name="email" type="varchar(255)">
-				<constraints unique="true" uniqueConstraintName="UK_spmnyb4dsul95fjmr5kmdmvub" nullable="false" />
-			</column>
-			<column name="name" type="varchar(80)">
+			<column name="description" type="varchar(45)">
 				<constraints nullable="false" />
 			</column>
-			<column name="password" type="varchar(128)">
+			<column name="active" type="BOOLEAN">
 				<constraints nullable="false" />
 			</column>
 		</createTable>
 	</changeSet>
 
-	<changeSet id="2" author="caio">
-		<insert tableName="tb_user">
-			<column name="pk_id" value="1" />
-			<column name="email" value="admin@admin.com" />
-			<column name="name" value="Administrador" />
-			<column name="password" value="9fe76e18dd29100230680fa6c812e26c4da4b3cf48a85850910e6f4400a6b3ff9ec05190c175f592" />
+	<changeSet id="3" author="Kamikaze">
+		<insert tableName="tb_lab_status">
+			<column name="lab_status_id" value="1" />
+			<column name="description" value="Ativo" />
+			<column name="active" value="true" />
+		</insert>
+		
+		<insert tableName="tb_lab_status">
+			<column name="lab_status_id" value="2" />
+			<column name="description" value="Inativo" />
+			<column name="active" value="false" />
 		</insert>
 	</changeSet>
 

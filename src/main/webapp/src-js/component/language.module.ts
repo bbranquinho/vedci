@@ -10,10 +10,12 @@ import {NgModule} from "@angular/core";
     exports: [
         CommonModule,
         TranslateModule
-    ]
+    ],
+
 })
 export class LanguageModule {
     constructor(translate: TranslateService){
         translate.setDefaultLang('pt-br');
+        translate.use('pt-br');
     }
 }

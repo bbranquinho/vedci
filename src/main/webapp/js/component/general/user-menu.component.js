@@ -11,12 +11,12 @@ var UserMenuComponent = /** @class */ (function () {
     function UserMenuComponent() {
     }
     UserMenuComponent.prototype.getImgeProfile = function () {
-        return "../../../img/tmp/user-250/1.jpg";
+        return "img/tmp/user-250/1.jpg";
     };
     UserMenuComponent = __decorate([
         core_1.Component({
             selector: 'user-menu',
-            templateUrl: '../../../html/view/general/user-menu.html'
+            templateUrl: 'html/view/general/user-menu.html'
         })
     ], UserMenuComponent);
     return UserMenuComponent;

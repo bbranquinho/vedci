@@ -51,7 +51,7 @@ var RegisterConfirmationComponent = /** @class */ (function () {
     };
     RegisterConfirmationComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/welcome/register-confirmation.html'
+            templateUrl: 'html/view/welcome/register-confirmation.html'
         }),
         __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, core_2.TranslateService])
     ], RegisterConfirmationComponent);

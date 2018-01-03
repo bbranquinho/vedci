@@ -3,12 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var http_factory_1 = require("../factory/http.factory");
 require("rxjs/add/operator/map");
 var WelcomeHighlightModel = /** @class */ (function () {
-    function WelcomeHighlightModel(id, name, url, image) {
+    function WelcomeHighlightModel(id, name, url, image, price, ranking, voteQuantity, bestSeller) {
         this.id = id;
         this.name = name;
         this.url = url;
-        this.image = image;
+        this.image = image || 'img/welcome/card-no-image.jpg';
+        this.ranking = ranking;
+        this.price = WelcomeHighlightModel.formatCurrency(price);
+        this.voteQuantity = voteQuantity;
+        this.bestSeller = bestSeller;
     }
+    WelcomeHighlightModel.formatCurrency = function (price) {
+        return price.toFixed(2);
+    };
     /**
      * Faz a requisição da lista de destaques
      *
@@ -39,10 +46,10 @@ var WelcomeHighlightModel = /** @class */ (function () {
      */
     WelcomeHighlightModel.fromJson = function (json) {
         if (json instanceof Array) {
-            return json.map(function (json) { return new WelcomeHighlightModel(json.id, json.name, json.url, json.image); });
+            return json.map(function (json) { return new WelcomeHighlightModel(json.id, json.name, json.url, json.image, json.price, json.ranking, json.voteQuantity, json.bestSeller); });
         }
         else {
-            return new WelcomeHighlightModel(json.id, json.name, json.url, json.image);
+            return new WelcomeHighlightModel(json.id, json.name, json.url, json.image, json.price, json.ranking, json.voteQuantity, json.bestSeller);
         }
     };
     return WelcomeHighlightModel;

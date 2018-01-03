@@ -81,7 +81,7 @@ var ForgotPasswordComponent = /** @class */ (function () {
     };
     ForgotPasswordComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/welcome/forgot-password.html'
+            templateUrl: 'html/view/welcome/forgot-password.html'
         }),
         __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute, core_2.TranslateService])
     ], ForgotPasswordComponent);

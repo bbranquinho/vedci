@@ -68,16 +68,12 @@ public class Configuration extends WebMvcConfigurerAdapter{
 						Resource requestedResource = location.createRelative(resourcePath);
 						
 						if(requestedResource.exists() && requestedResource.isReadable()) {
-							return requestedResource;
-						}else {
+							return requestedResource;	
+						}else if(!requestedResource.getURL().toString().toLowerCase().contains(API_PREFIX)){
 							requestedResource = location.createRelative("index.html");
 						}
 						
 						return requestedResource;
-						/*
-						return requestedResource.exists() && requestedResource.isReadable() ? requestedResource
-								: new ClassPathResource("/index.html");
-								*/
 					}
 				});
 	}

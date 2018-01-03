@@ -5,7 +5,7 @@ import {UserModel} from "../../model/user.model";
 import {NotificationService} from "../../service/notification.service";
 
 @Component({
-    templateUrl: '../../../html/view/welcome/register-confirmation.html'
+    templateUrl: 'html/view/welcome/register-confirmation.html'
 })
 export class RegisterConfirmationComponent implements OnInit{
     private _router: Router;

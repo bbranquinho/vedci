@@ -12,7 +12,7 @@ var ProfileComponent = /** @class */ (function () {
     }
     ProfileComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/user/profile.html'
+            templateUrl: 'html/view/user/profile.html'
         })
     ], ProfileComponent);
     return ProfileComponent;

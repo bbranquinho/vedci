@@ -1,0 +1,99 @@
+<welcome-header></welcome-header>
+
+<div class="ice-container">
+    <div uk-grid class="ice-welcome-home-information">
+        <div class="uk-width-1-3@m">
+            <img src="img/dinheiro.jpg"/>
+            <div class="ice-welcome-home-title">{{"share" | translate}}</div>
+            <div class="ice-welcome-home-description">{{"share-text" | translate}}</div>
+        </div>
+        <div class="uk-width-1-3@m">
+            <img src="img/livro.jpg"/>
+            <div class="ice-welcome-home-title">{{"learn" | translate}}</div>
+            <div class="ice-welcome-home-description">{{"learn-text" | translate}}</div>
+        </div>
+        <div class="uk-width-1-3@m">
+            <img src="img/ajuda.jpg"/>
+            <div class="ice-welcome-home-title">{{"connect" | translate}}</div>
+            <div class="ice-welcome-home-description">{{"connect-text" | translate}}</div>
+        </div>
+    </div>
+
+
+    <div class="highlight">
+        <h4 class="highlight-title">{{"best-seller" | translate}}</h4>
+
+        <div uk-grid>
+
+            <div *ngIf="bestSellerHighlights.length == 0" class="bubblingG">
+                <span class="bubblingG_1"></span>
+                <span class="bubblingG_2"></span>
+                <span class="bubblingG_3"></span>
+            </div>
+
+            <div *ngFor="let highlight of bestSellerHighlights; let i = index" [ngClass]="'uk-width-1-5@l uk-width-1-4@m ice-width-highlight ice-highlight-'+(i+1)">
+                <div class="card left-card">
+                    <div class="card-img"><img [src]="highlight.image"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">{{highlight.name}}</h3>
+                        <ul class="card-info">
+                            <li>{{highlight.url}}</li>
+
+                            <li>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 1}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 2}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 3}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 4}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 5}"></span>
+                                ({{highlight.voteQuantity}})
+                            </li>
+
+                            <li translate [translateParams]="{price: highlight.price}" class="card-price">price</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="highlight">
+        <h4 class="highlight-title">{{"best-raking" | translate}}</h4>
+
+        <div uk-grid>
+
+            <div *ngIf="bestSellerRaking.length == 0" class="bubblingG">
+                <span class="bubblingG_1"></span>
+                <span class="bubblingG_2"></span>
+                <span class="bubblingG_3"></span>
+            </div>
+
+            <div *ngFor="let highlight of bestSellerRaking; let i = index" [ngClass]="'uk-width-1-5@l uk-width-1-4@m ice-width-highlight ice-highlight-'+(i+1)">
+                <div class="card left-card">
+                    <div class="card-img"><img [src]="highlight.image"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">{{highlight.name}}</h3>
+                        <ul class="card-info">
+                            <li>{{highlight.url}}</li>
+
+                            <li>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 1}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 2}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 3}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 4}"></span>
+                                <span class="fa fa-star" [ngClass]="{'star': highlight.ranking >= 5}"></span>
+                                ({{highlight.voteQuantity}})
+                            </li>
+
+                            <li translate [translateParams]="{price: highlight.price}" class="card-price">price</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<footer></footer>

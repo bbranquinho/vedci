@@ -1,100 +1,36 @@
-<welcome-navbar></welcome-navbar>
+<welcome-header></welcome-header>
 
-    <div class="informacoes">
-        <table class="uk-table uk-table-middle">
-            <thead>
-            <tr>
-                <th><img class="informacoes-img" src="../img/grana.jpg"/></th>
-                <th><img class="informacoes-img" src="../img/ensine.jpg"/></th>
-                <th><img class="informacoes-img" src="../img/design.jpg"/></th>
-            </tr>
-            <tr>
-                <th class="informacoes-titulo">Ganhe enquanto ensina</th>
-                <th class="informacoes-titulo">Ensine do seu jeito</th>
-                <th class="informacoes-titulo">Personalize seu laboratório</th>
-            </tr>
 
-            <tr>
-                <td class="informacoes-desc">Você pode ensinar os mais variados conteúdos e ganhar dinheiro sempre que alguem
-                    comprar seu curso, apoiar seu laboratório ou criar atividades pagas.</td>
-                <td class="informacoes-desc">Você pode escolher o método que mais lhe agrada para ensinar, você pode usar
-                    videos, imagens e textos e ainda personalizar o seu ambiente de ensino.</td>
-                <td class="informacoes-desc">Deixe seu laboratório com a sua cara, você terá a opção de modificar a interface
-                    e deixar como preferir. </td>
-            </tr>
+<div class="ice-container">
 
-            </thead>
-        </table>
+    <div uk-grid class="ice-welcome-instruct-information">
+        <div class="uk-width-1-3@m">
+            <img src="img/grana.jpg"/>
+            <div class="ice-welcome-instruct-title">{{"money" | translate}}</div>
+            <div class="ice-welcome-instruct-description">{{"money-text" | translate}}</div>
+        </div>
+        <div class="uk-width-1-3@m">
+            <img src="img/ensine.jpg"/>
+            <div class="ice-welcome-instruct-title">{{"instruct" | translate}}</div>
+            <div class="ice-welcome-instruct-description">{{"instruct-text" | translate}}</div>
+        </div>
+        <div class="uk-width-1-3@m">
+            <img src="img/design.jpg"/>
+            <div class="ice-welcome-instruct-title">{{"custom" | translate}}</div>
+            <div class="ice-welcome-instruct-description">{{"custom-text" | translate}}</div>
+        </div>
     </div>
 
+    <dl class="uk-description-list uk-description-list-divider uk-width-1-1 ice-welcome-instruct-start">
+        <div>{{"instruct-start" | translate}}</div>
 
-    <dl class="uk-description-list uk-description-list-divider" style="position: relative; top: 400px; width: 1000px;">
-        <td class="lista-apresentacao">Veja como iniciar:</td>
-        <dt class="lista-titulo">Escolha um Tema</dt>
-        <dd class="lista-desc">Conhece muito sobre um assunto? defina um tema e crie seu laboratório, seu conhecimento poderá alcançar milhares de pessoas e ajudá-las em suas jornadas. Interaja com sua comunidade, sua participação é importante e pode fazer com que seus lucros cresçam caso seus alunos criem perguntas ou atividades pagas.</dd>
+        <dt>{{"instruct-theme" | translate}}</dt>
+        <dd>{{"instruct-theme-text" | translate}}</dd>
 
-        <dt class="lista-titulo">Personalize seu Laboratório</dt>
-        <dd class="lista-desc">Deixe seu laboratório com a sua cara, você terá a opção de modificar a interface e deixar como preferir. O nosso site permite que vc personalize seu laboratório inserindo seu próprio CSS. Personalize-o de acordo com seu tema e com suas preferências, isso tornará o processo de aprendizado dos seus alunos algo muito mais agradável.</dd>
+        <dt>{{"instruct-lab" | translate}}</dt>
+        <dd>{{"instruct-lab-text" | translate}}</dd>
 
-        <dt class="lista-titulo">Poste e compartilhe seu Conteúdo</dt>
-        <dd class="lista-desc">Escolha a melhor forma de postar seu conteúdo, utilizando videos, imagens, textos ou todos eles! Voce tem a liberdade de definir a forma mais eficiente de se comunicar com seus alunos. Divulgue seu conteúdo para familiares e amigos e ajude-nos a almentar o alcance do seu conteúdo.</dd>
+        <dt>{{"instruct-shared" | translate}}</dt>
+        <dd>{{"instruct-shared-text" | translate}}</dd>
     </dl>
-
-
-<style type="text/css">
-
-.informacoes {
-    position: absolute;
-    left: 5%;
-    right: 5%
-}
-
-.informacoes-img {
-    width: 85px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.informacoes-titulo {
-    text-align: center !important;
-    width: 30%;
-    position: relative;
-    top: -20px;
-}
-
-.informacoes-desc {
-    text-align: center;
-    position: relative;
-    top: -45px
-}
-
-
-/*############ CSS relativo ao slider ############*/
-
-
-.lista-apresentacao {
-    font-size: 1.3em;
-    font-weight: bold;
-    color: #4F4F4F;
-    position: relative;
-    top: -90px;
-    left: 147px;
-    width: 500px;
-}
-
-.lista-titulo {
-    position: relative;
-    left: 150px;
-    top: -100px;
-    font-weight: bold;
-    color: #4F4F4F;
-}
-.lista-desc {
-    position: relative;
-    left: 150px;
-    top: -100px;
-    font-weight:normal;
-}
-
-</style>
+</div>

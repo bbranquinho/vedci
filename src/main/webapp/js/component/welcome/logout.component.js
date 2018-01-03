@@ -20,7 +20,7 @@ var LogoutComponent = /** @class */ (function () {
     };
     LogoutComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/welcome/logout.html'
+            templateUrl: 'html/view/welcome/logout.html'
         })
     ], LogoutComponent);
     return LogoutComponent;

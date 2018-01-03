@@ -37,6 +37,8 @@ var HttpInterceptorService = /** @class */ (function () {
         this._baseUrl = 'http://127.0.0.1:8080/api/';
         this._authService = authService;
         this._translate = translate;
+        //TODO remover isto depois
+        this._baseUrl = "http://" + window.location.hostname + ":8080/api/";
     }
     /**
      * Intecepta as requisições http

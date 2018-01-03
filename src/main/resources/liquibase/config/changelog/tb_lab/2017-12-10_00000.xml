@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+	<changeSet id="1" author="Kamikaze">
+		<createTable tableName="tb_lab">
+			<column name="lab_id" type="BIGINT(20)" autoIncrement="true" startWith="14">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+			<column name="name" type="varchar(45)">
+				<constraints nullable="false" />
+			</column>
+			<column name="url" type="varchar(20)">
+				<constraints nullable="false" />
+			</column>
+			<column name="price" type="DECIMAL(8,2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="ask" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="reply" type="INT">
+				<constraints nullable="false" />
+			</column>
+			<column name="ranking" type="SMALLINT(2)">
+				<constraints nullable="false" />
+			</column>
+			<column name="vote_quantity" type="BIGINT">
+				<constraints nullable="false" />
+			</column>
+			<column name="image" type="VARCHAR(100)">
+				<constraints nullable="true" />
+			</column>
+			<column name="description" type="VARCHAR(500)">
+				<constraints nullable="true" />
+			</column>
+			<column name="creation_date" type="DATETIME">
+				<constraints nullable="false" />
+			</column>
+			<column name="lab_status_id" type="BIGINT">
+				<constraints nullable="true" />
+			</column>
+		</createTable>
+	</changeSet>
+	
+	<changeSet id="2" author="Kamikaze">
+		<addForeignKeyConstraint 
+			baseColumnNames="lab_status_id"
+            baseTableName="tb_lab"
+            constraintName="fk_lab_status"
+            deferrable="true"
+            initiallyDeferred="true"
+            onDelete="RESTRICT"
+            onUpdate="RESTRICT"
+            referencedColumnNames="lab_status_id"
+            referencedTableName="tb_lab_status"/>
+            
+         <addUniqueConstraint
+            columnNames="url"
+            constraintName="uq_lab_url"
+            tableName="tb_lab"/>
+	</changeSet>
+
+	<changeSet id="3" author="Kamikaze">
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="1" />
+			<column name="name" value="Meu primeiro laboratório" />
+			<column name="url" value="help" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="ranking" value="1" />
+			<column name="vote_quantity" value="231" />
+			<column name="image" value="null" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="2" />
+			<column name="name" value="3D Studio Max: Do básico ao avançado" />
+			<column name="url" value="studio-max-guru" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="ranking" value="5" />
+			<column name="vote_quantity" value="3654" />
+			<column name="image" value="img/3dmax.png" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="3" />
+			<column name="name" value="JavaScript para iniciantes" />
+			<column name="url" value="javiando" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="54548" />
+			<column name="image" value="img/javascript.png" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="4" />
+			<column name="name" value="Bootstrap: Design responsivo" />
+			<column name="url" value="pe-na-porta" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="ranking" value="2" />
+			<column name="vote_quantity" value="63854" />
+			<column name="image" value="img/bootstrap.png" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="5" />
+			<column name="name" value="Culinária: Chocolates e doces" />
+			<column name="url" value="mestre-cuca" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="454544" />
+			<column name="image" value="img/culinaria.jpg" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="6" />
+			<column name="name" value="Violão: Do básico ao avançado" />
+			<column name="url" value="viola-violao" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="32" />
+			<column name="image" value="img/guitarra.jpg" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="7" />
+			<column name="name" value="EX 1" />
+			<column name="url" value="ex-1" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="655656" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="8" />
+			<column name="name" value="EX 2" />
+			<column name="url" value="ex-2" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="45445" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="9" />
+			<column name="name" value="EX 3" />
+			<column name="url" value="ex-3" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="3333" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>	
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="10" />
+			<column name="name" value="EX 4" />
+			<column name="url" value="ex-4" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="4" />
+			<column name="vote_quantity" value="3654" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="11" />
+			<column name="name" value="EX 5" />
+			<column name="url" value="ex-5" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="3" />
+			<column name="vote_quantity" value="8" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="12" />
+			<column name="name" value="EX 6" />
+			<column name="url" value="ex-6" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="3" />
+			<column name="vote_quantity" value="8" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>	
+		
+		<insert tableName="tb_lab">
+			<column name="lab_id" value="13" />
+			<column name="name" value="EX 7" />
+			<column name="url" value="ex-7" />
+			<column name="price" value="0" />
+			<column name="ask" value="0" />
+			<column name="reply" value="0" />
+			<column name="image" value="null" />
+			<column name="ranking" value="5" />
+			<column name="vote_quantity" value="8" />
+			<column name="description" value="Descrição padrão para teste" />
+			<column name="creation_date" value="2017-12-02 17:11:00" />
+			<column name="lab_status_id" value="1" />
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>

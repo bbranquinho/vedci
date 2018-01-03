@@ -12,7 +12,7 @@ var SearchComponent = /** @class */ (function () {
     }
     SearchComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/welcome/search.html'
+            templateUrl: 'html/view/welcome/search.html'
         })
     ], SearchComponent);
     return SearchComponent;

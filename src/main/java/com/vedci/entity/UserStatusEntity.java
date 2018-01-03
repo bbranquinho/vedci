@@ -23,6 +23,29 @@ public class UserStatusEntity {
 	
 	@Column(name = "active",  nullable = false)
     private boolean active;
-	
+
+	public Long getUserStatusId() {
+		return userStatusId;
+	}
+
+	public void setUserStatusId(Long userStatusId) {
+		this.userStatusId = userStatusId;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 
 }

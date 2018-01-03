@@ -7,14 +7,28 @@ export class WelcomeHighlightModel{
     public name: string;
     public url: string;
     public image: string;
+    public price: string;
+    public ranking: number;
+    public voteQuantity: number;
+    public bestSeller: boolean;
 
-    constructor(id: number, name: string, url: string, image: string) {
+
+
+    constructor(id: number, name: string, url: string, image: string, price: number, ranking: number, voteQuantity: number, bestSeller: boolean){
         this.id = id;
         this.name = name;
         this.url = url;
-        this.image = image;
+        this.image = image || 'img/welcome/card-no-image.jpg';
+        this.ranking = ranking;
+        this.price = WelcomeHighlightModel.formatCurrency(price);
+        this.voteQuantity = voteQuantity;
+        this.bestSeller = bestSeller;
     }
 
+
+    private static formatCurrency(price: number): string{
+        return price.toFixed(2);
+    }
 
     /**
      * Faz a requisição da lista de destaques
@@ -56,6 +70,10 @@ export class WelcomeHighlightModel{
                 json.name,
                 json.url,
                 json.image,
+                json.price,
+                json.ranking,
+                json.voteQuantity,
+                json.bestSeller
             ));
         }else{
             return new WelcomeHighlightModel(
@@ -63,6 +81,10 @@ export class WelcomeHighlightModel{
                 json.name,
                 json.url,
                 json.image,
+                json.price,
+                json.ranking,
+                json.voteQuantity,
+                json.bestSeller
             );
         }
     }

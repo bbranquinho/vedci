@@ -1,14 +1,20 @@
-import {Component, OnInit} from '@angular/core'
+import {Component} from "@angular/core";
 import {UserModel} from "../../model/user.model";
 import {AuthGuardService} from "../../service/auth-guard.service";
-import {ActivatedRoute, Params, Router} from "@angular/router";
-import {WelcomeHighlightModel} from "../../model/welcome-highlight.model";
-import {TranslateService} from "@ngx-translate/core";
 import {NotificationService} from "../../service/notification.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
+import {TranslateService} from "@ngx-translate/core";
+
 @Component({
-    templateUrl: '../../../html/view/welcome/login.html'
+    selector: 'welcome-header',
+    templateUrl: 'html/view/general/welcome-header.html',
+    styleUrls: [
+        'css/general/welcome-header.min.css',
+        'node_modules/font-awesome/css/font-awesome.css'
+    ]
 })
-export class LoginComponent implements OnInit{
+
+export class WelcomeHeaderComponent{
     private _router: Router;
     private _activatedRoute: ActivatedRoute;
     private _returnUrl: string;
@@ -16,7 +22,6 @@ export class LoginComponent implements OnInit{
 
     public email: string;
     public password: string;
-    public highlights: WelcomeHighlightModel[];
 
     /**
      * Construtor padrão
@@ -37,12 +42,6 @@ export class LoginComponent implements OnInit{
     public ngOnInit(): void{
         this._activatedRoute.params.subscribe((params: Params) => {
             this._returnUrl = params['url'] || '/user';
-        });
-
-
-        //Carrega a lista de destaque
-        WelcomeHighlightModel.getHighlights().subscribe(highlights =>{
-            this.highlights = highlights;
         });
     }
 

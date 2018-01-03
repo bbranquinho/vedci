@@ -14,7 +14,7 @@ var MainTemplate = /** @class */ (function () {
         core_1.Component({
             selector: 'main-app',
             encapsulation: core_1.ViewEncapsulation.None,
-            templateUrl: '../../../html/template/main.html',
+            templateUrl: 'html/template/main.html',
             styleUrls: []
         })
     ], MainTemplate);

@@ -15,8 +15,8 @@ import com.vedci.repository.UserRepository;
 
 public class Security implements HandlerInterceptor{
 	private UserRepository userRepository;
-	public boolean authenticated = false;
-	public UserEntity userAuthenticated = null;
+	private static boolean authenticated = false;
+	private static UserEntity userAuthenticated = null;
 	
 	public Security(UserRepository userRepository) {
 		this.userRepository = userRepository;
@@ -39,12 +39,6 @@ public class Security implements HandlerInterceptor{
 		HandlerMethod hm = (HandlerMethod) handler;
 		Method method = hm.getMethod();
 		int needAccessLevel = 0;
-		 
-		if(method.getDeclaringClass().getName().equals("com.vedci.controller.ErrorController")) {
-			return true;
-		}
-		
-		System.out.println(request.getRequestURL());
 		
 		if(method.getDeclaringClass().isAnnotationPresent(RestController.class)){
 	
@@ -79,7 +73,6 @@ public class Security implements HandlerInterceptor{
 				
 			}else {
 				//Erro interno, anotação Security não encontrada
-				System.out.println("AQUI EX 1");
 				response.resetBuffer();
 				response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 				response.getOutputStream().write(ErrorController.security().getBytes());
@@ -87,15 +80,21 @@ public class Security implements HandlerInterceptor{
 			}
 		}else{
 			//Erro interno, anotação RestController não encontrada
-			System.out.println("AQUI EX 2");
 			response.resetBuffer();
 			response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
 			response.getOutputStream().write(ErrorController.security().getBytes());
 			return false;
 		}
-		
-		//Passou em todas regras de segurança
 		return true;
+	}
+	
+	public static boolean isAuthenticated() {
+		return Security.authenticated;
+	}
+	
+	
+	public static UserEntity getUserAuthenticated() {
+		return Security.userAuthenticated;
 	}
 	
 }

@@ -15,6 +15,7 @@ var core_2 = require("@angular/core");
 var LanguageModule = /** @class */ (function () {
     function LanguageModule(translate) {
         translate.setDefaultLang('pt-br');
+        translate.use('pt-br');
     }
     LanguageModule = __decorate([
         core_2.NgModule({
@@ -24,7 +25,7 @@ var LanguageModule = /** @class */ (function () {
             exports: [
                 common_1.CommonModule,
                 core_1.TranslateModule
-            ]
+            ],
         }),
         __metadata("design:paramtypes", [core_1.TranslateService])
     ], LanguageModule);

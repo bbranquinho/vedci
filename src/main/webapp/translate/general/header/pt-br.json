@@ -1,0 +1,15 @@
+{
+  "welcome-header":{
+    "email": "Email",
+    "password": "Senha",
+    "login": "Logar",
+    "forgot-password": "Esqueceu sua senha?",
+    "register": "Cadastrar",
+    "instruct": "Ensine",
+    "search": "Pesquisar cursos",
+    "category": "Categoria",
+    "menu": "Menu"
+  }
+
+
+}

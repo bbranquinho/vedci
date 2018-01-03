@@ -13,7 +13,7 @@ var FooterComponent = /** @class */ (function () {
     FooterComponent = __decorate([
         core_1.Component({
             selector: 'footer',
-            templateUrl: '../../../html/view/general/footer.html'
+            templateUrl: 'html/view/general/footer.html'
         })
     ], FooterComponent);
     return FooterComponent;

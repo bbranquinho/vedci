@@ -60,7 +60,7 @@ var RegisterComponent = /** @class */ (function () {
     };
     RegisterComponent = __decorate([
         core_1.Component({
-            templateUrl: '../../../html/view/welcome/register.html'
+            templateUrl: 'html/view/welcome/register.html'
         }),
         __metadata("design:paramtypes", [router_1.Router, core_2.TranslateService])
     ], RegisterComponent);
